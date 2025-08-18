@@ -28,7 +28,7 @@ export default function WitnessCalculator(){
       const Rw = parseFlexibleNumber(rateWorld)
       const Ry = parseFlexibleNumber(rateYou)
       const D  = parseFlexibleNumber(days)
-      if ([Rw,Ry,D].some(x=>!x.isFinite() || x.isNegative())) throw new Error('bad')
+        if ([Rw,Ry,D].some(x=>!Number.isFinite(x.toNumber()) || x.isNegative())) throw new Error('bad')
       const nGlobal = Rw.mul(D)
       const nYouSee = Ry.mul(visibility).mul(D)
       const exposure = nYouSee.div(nGlobal).toNumber()

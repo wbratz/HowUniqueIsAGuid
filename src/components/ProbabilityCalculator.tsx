@@ -19,8 +19,8 @@ export default function ProbabilityCalculator() {
     const clean = sanitize(nStr)
     if (!clean.trim()) return { text: '—', interp: '' }
     try {
-      const N = new Decimal(clean)
-      if (N.isNaN() || N.isNegative()) return { text: 'Invalid', interp: '' }
+        const N = new Decimal(clean)
+        if (!Number.isFinite(N.toNumber()) || N.isNegative()) return { text: 'Invalid', interp: '' }
       const p = collisionProbability(N, SPACE_122).mul(100)
       const text = p.lessThan(0.000001) ? p.toExponential(2) + '%' : p.toFixed(6) + '%'
       const interp = `If you create ${N.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} GUIDs, the chance any two are the same is ${text}.`
