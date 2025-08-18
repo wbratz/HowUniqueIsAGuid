@@ -1,9 +1,11 @@
 import Decimal from 'decimal.js-light'
 
+export type Num = Decimal | number | string
+
 export const TWO = new Decimal(2)
 export const BITS_TOTAL = new Decimal(128)
 export const BITS_RANDOM_V4 = new Decimal(122) // 6 bits fixed by version + variant
-export const SPACE_128 = TWO.pow(BITS_TOTAL) // 2^128
+export const SPACE_128 = TWO.pow(BITS_TOTAL)   // 2^128
 export const SPACE_122 = TWO.pow(BITS_RANDOM_V4) // 2^122 (v4 random space)
 
 export const formatBig = (d: Decimal, dp = 2) => {
@@ -19,10 +21,8 @@ export const prettyInt = (d: Decimal) => {
   return s.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 }
 
-/** Birthday paradox approximation:
- * p ≈ 1 - exp(-n(n-1)/(2 * space))
- */
-export function collisionProbability(n: Decimal.Value, space: Decimal.Value = SPACE_122) {
+/** Birthday paradox approximation: p ≈ 1 − exp( − n(n−1) / (2·space) ) */
+export function collisionProbability(n: Num, space: Num = SPACE_122) {
   const N = new Decimal(n)
   if (N.lessThanOrEqualTo(1)) return new Decimal(0)
   const S = new Decimal(space)
@@ -31,23 +31,25 @@ export function collisionProbability(n: Decimal.Value, space: Decimal.Value = SP
   return new Decimal(1).minus(new Decimal(Math.exp(-frac.toNumber())))
 }
 
-export function yearsToExhaust(ratePerSecond: Decimal.Value, space: Decimal.Value = SPACE_122) {
+export function yearsToExhaust(ratePerSecond: Num, space: Num = SPACE_122) {
   const seconds = new Decimal(space).div(ratePerSecond)
-  const years = seconds.div(60).div(60).div(24).div(365)
-  return years
+  return seconds.div(60).div(60).div(24).div(365)
 }
 
 export const estimates = {
   grainsOfSand: new Decimal('7.5e18'),
   people: new Decimal('8e9'),
-  ageUniverseYears: new Decimal('1.38e10')
+  ageUniverseYears: new Decimal('1.38e10'),
 }
 
+/** Break d into mantissa×10^exp with 2 sig figs mantissa */
 export function scientificParts(d: Decimal) {
   const s = d.toExponential(2) // "3.40e+38"
   const m = s.match(/^(\d+(?:\.\d+)?)e([+-]?\d+)$/)
   if (!m) return { coeff: d.toString(), exp: 0 }
-  return { coeff: m[1], exp: parseInt(m[2], 10) }
+  const coeffStr = m[1] as string
+  const expStr = m[2] as string
+  return { coeff: coeffStr, exp: parseInt(expStr, 10) }
 }
 
 const SCALE_NAMES_MAP: Record<number, string> = {
@@ -92,21 +94,24 @@ export function speakableWithName(d: Decimal) {
   const s = d.toExponential(2)
   const m = s.match(/^(\d+(?:\.\d+)?)e([+-]?\d+)$/)
   if (!m) return d.toString()
-  const coeff = new Decimal(m[1])
-  const exp = parseInt(m[2], 10)
+  const coeff = new Decimal(m[1] as string)
+  const exp = parseInt(m[2] as string, 10)
   const group = Math.floor(exp / 3) * 3
   const name = SCALE_NAMES_MAP[group]
   const scaled = coeff.mul(new Decimal(10).pow(exp - group))
   if (name) {
-    if (scaled.greaterThanOrEqualTo(1000) && SCALE_NAMES_MAP[group + 3]) {
-      const rolled = scaled.div(1000)
-      const rolledName = SCALE_NAMES_MAP[group + 3]
-      return `about ${rolled.toFixed(0)} ${rolledName}`
+    // roll up "1000 million" → "1 billion" when possible
+    if (scaled.greaterThanOrEqualTo(1000)) {
+      const nextName = SCALE_NAMES_MAP[group + 3]
+      if (nextName) {
+        const rolled = scaled.div(1000)
+        return `about ${rolled.toFixed(0)} ${nextName}`
+      }
     }
     const val = scaled.greaterThanOrEqualTo(100) ? scaled.toFixed(0) : scaled.toFixed(2)
     return `about ${val} ${name}`
   }
-  return `about ${coeff.toFixed(2)} × 10^${exp} (no standard short‑scale name)`
+  return `about ${coeff.toFixed(2)} × 10^${exp} (no standard short-scale name)`
 }
 
 export function parseFlexibleNumber(s: string) {
@@ -114,20 +119,21 @@ export function parseFlexibleNumber(s: string) {
   return new Decimal(clean)
 }
 
-export function expectedPairs(n: Decimal.Value, space: Decimal.Value = SPACE_122) {
+export function expectedPairs(n: Num, space: Num = SPACE_122) {
   const N = new Decimal(n)
   if (N.lessThanOrEqualTo(1)) return new Decimal(0)
   const S = new Decimal(space)
   return N.mul(N.minus(1)).div(S.mul(2))
 }
 
-export function probAtLeastOne(lambda: Decimal.Value) {
+export function probAtLeastOne(lambda: Num) {
   const L = new Decimal(lambda)
   if (L.greaterThan(50)) return new Decimal(1)
   return new Decimal(1).minus(new Decimal(Math.exp(-L.toNumber())))
 }
 
-export function witnessProbability(n: Decimal.Value, exposureFraction: Decimal.Value, recognition: Decimal.Value, space: Decimal.Value = SPACE_122) {
+/** Probability YOU witness ≥1 collision given exposure fraction e and recognition d */
+export function witnessProbability(n: Num, exposureFraction: Num, recognition: Num, space: Num = SPACE_122) {
   const lambda = expectedPairs(n, space)
   const e = new Decimal(exposureFraction)
   const d = new Decimal(recognition)
