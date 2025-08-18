@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import Decimal from 'decimal.js-light'
-import { SPACE_122 } from '../lib/math'
+import { SPACE_122, speakableWithName } from '../lib/math'
 
 const ODDS_POWERBALL = new Decimal('292201338')
 const LN2 = Math.LN2
@@ -25,8 +25,9 @@ export default function RelatableScenarios() {
   const chars62 = charsNeeded(62)
 
   const grains = new Decimal('7.5e18')
-  const twoSameGrainTwiceProb = new Decimal(1).div(grains.pow(2))
-  const pairCollisionProb = new Decimal(1).div(SPACE_122)
+  const grainsSquared = grains.pow(2)
+  const sandOdds = speakableWithName(grainsSquared).replace('about ', '')
+  const guidOdds = speakableWithName(SPACE_122).replace('about ', '')
 
   const cards = [
     {
@@ -34,36 +35,36 @@ export default function RelatableScenarios() {
       lead: `Win Powerball about ${kPowerball.toFixed(2)} times in a row`,
       blurb:
         'Two fresh random v4 GUIDs matching is roughly as unlikely as hitting the Powerball jackpot ~4–5 times in a row.',
-      foot: 'Powerball odds are 1 in 292,201,338 per drawing; assumes independence.'
+      foot: 'Powerball odds are 1 in 292,201,338 per drawing; assumes independence.',
     },
     {
       title: 'Gamer dice',
       lead: `Match a specific ${kD20}-roll D20 sequence`,
       blurb:
         'Write down 28 exact D20 results (like 7, 13, 20, …). Rolling that exact sequence is on the same scale as a two‑GUID collision.',
-      foot: 'Uses base^k ≈ 2^122 with base = 20.'
+      foot: 'Uses base^k ≈ 2^122 with base = 20.',
     },
     {
       title: 'Typing a random code (A–Z, 0–9)',
       lead: `Match a random ${chars36}-character code`,
       blurb:
         'With upper‑case letters and digits only, ~24 random characters is comparable to a two‑GUID collision.',
-      foot: '36^24 is slightly larger than 2^122; 23 would be slightly smaller.'
+      foot: '36^24 is slightly larger than 2^122; 23 would be slightly smaller.',
     },
     {
       title: 'Typing a random code (a–z, A–Z, 0–9)',
       lead: `Match a random ${chars62}-character code`,
       blurb:
         'Using upper+lower+digits, about 21 characters is on the same order as a two‑GUID collision.',
-      foot: '62^21 ≈ 2^122 (order of magnitude).'
+      foot: '62^21 ≈ 2^122 (order of magnitude).',
     },
     {
       title: 'Sand, twice in a row',
       lead: 'Pick the exact same grain twice from all Earth’s beaches',
       blurb:
         'Doing it twice — mixing the sand between picks — is a bit less likely than two random GUIDs matching.',
-      foot: `1/(7.5e18)^2 ≈ ${twoSameGrainTwiceProb.toExponential(2)} vs 1/2^122 ≈ ${pairCollisionProb.toExponential(2)}.`
-    }
+      foot: `Odds: ~1 in ${sandOdds} vs ~1 in ${guidOdds} for two GUIDs colliding.`,
+    },
   ]
 
   return (

@@ -13,26 +13,26 @@ const items = (() => {
       title: 'Per grain of sand',
       value: `${speakableWithName(perGrain)} GUIDs`,
       foot: '…for every grain of sand on Earth',
-      detail: `~${prettyInt(perGrain)} per grain`
+      detail: `~${prettyInt(perGrain)} per grain`,
     },
     {
       title: 'Per person alive',
       value: `${speakableWithName(perPerson)} GUIDs`,
       foot: '…for each of the ~8 billion people',
-      detail: `${prettyInt(perPerson)} each`
+      detail: `${prettyInt(perPerson)} each`,
     },
     {
       title: 'Time to “run out”',
-      value: `${yearsAt1Bps.toExponential(2)} years`,
+      value: `${speakableWithName(yearsAt1Bps)} years`,
       foot: '…if you minted 1 billion GUIDs per second',
-      detail: `That’s astronomically longer than the age of the universe`
+      detail: `That’s astronomically longer than the age of the universe`,
     },
     {
       title: 'Coin‑flip analogy',
       value: `${coinFlips} flips`,
       foot: 'Equivalent to flipping 122 fair coins',
-      detail: '…and using the exact head/tail sequence as your ID'
-    }
+      detail: '…and using the exact head/tail sequence as your ID',
+    },
   ]
 })()
 
