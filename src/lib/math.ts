@@ -81,7 +81,7 @@ export function speakable(d: Decimal) {
   const name = SCALE_NAMES_MAP[exp]
   const rounded = new Decimal(coeff).toFixed(2)
   if (name) return `about ${rounded} ${name}`
-  return `about ${rounded} × 10^${exp} (a ${rounded} with ${exp} zeros)`
+  return `about ${rounded} × 10^${exp} (${rounded} with ${exp} zeros)`
 }
 
 export function zerosLine(d: Decimal) {
