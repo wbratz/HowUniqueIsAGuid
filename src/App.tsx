@@ -25,8 +25,8 @@ export default function App() {
         <LayersExplainer />
         <WitnessCalculator />
         <Generator />
-        <Sources />
         <Summary />
+        <Sources />
       </main>
     </div>
   )
