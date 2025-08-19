@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { SPACE_128, SPACE_122, BITS_RANDOM_V4, speakable, zerosLine } from '../lib/math'
+import BitGrid from './BitGrid'
 
 export default function Hero() {
   return (
@@ -14,6 +15,7 @@ export default function Hero() {
           <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight">
             How <span className="text-accent">unique</span> is a GUID?
           </h1>
+          <BitGrid />
           <p className="mt-4 text-white/70 max-w-2xl mx-auto">
             GUIDs (also called UUIDs) are 128‑bit identifiers — think of <span className="font-semibold">128 on/off switches</span>. In version 4 (the random kind), <span className="font-semibold">6 of those switches are reserved</span> to label the version and rules, so <span className="font-semibold">122 switches are truly random</span>. That’s about the same randomness as <span className="font-semibold">122 coin flips</span>.
           </p>
