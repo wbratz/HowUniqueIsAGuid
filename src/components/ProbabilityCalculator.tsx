@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import Decimal from 'decimal.js-light'
 import { useState, useMemo } from 'react'
 import { collisionProbability, SPACE_122 } from '../lib/math'
+import { collisionSeries, linePath } from '../lib/chart'
 
 export default function ProbabilityCalculator() {
   const examples = [
@@ -27,6 +28,17 @@ export default function ProbabilityCalculator() {
       return { text, interp }
     } catch {
       return { text: 'Invalid', interp: '' }
+    }
+  }, [nStr])
+
+  const chartPath = useMemo(() => {
+    const clean = sanitize(nStr)
+    if (!clean.trim()) return ''
+    try {
+      const pts = collisionSeries(clean)
+      return linePath(pts, 400, 200)
+    } catch {
+      return ''
     }
   }, [nStr])
 
@@ -73,6 +85,16 @@ export default function ProbabilityCalculator() {
                 </button>
               ))}
             </div>
+
+            {chartPath && (
+              <div className="mt-8">
+                <svg viewBox="0 0 400 200" className="w-full h-64 text-accent">
+                  <line x1="0" y1="200" x2="400" y2="200" stroke="currentColor" strokeOpacity="0.2" />
+                  <line x1="0" y1="0" x2="0" y2="200" stroke="currentColor" strokeOpacity="0.2" />
+                  <path d={chartPath} fill="none" stroke="currentColor" strokeWidth="2" />
+                </svg>
+              </div>
+            )}
           </div>
 
           <div className="backdrop-blur-card rounded-2xl p-6">
