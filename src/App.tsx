@@ -10,6 +10,7 @@ import WitnessCalculator from './components/WitnessCalculator'
 import Sources from './components/Sources'
 import Summary from './components/Summary'
 import Generator from './components/Generator'
+import CodeSamples from './components/CodeSamples'
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <LayersExplainer />
         <WitnessCalculator />
         <Generator />
+        <CodeSamples />
         <Summary />
         <Sources />
       </main>
