@@ -1,8 +1,29 @@
-import { motion } from 'framer-motion'
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+  animate,
+} from 'framer-motion'
 import Decimal from 'decimal.js-light'
-import { SPACE_122, estimates, yearsToExhaust, prettyInt, speakableWithName } from '../lib/math'
+import { useEffect, useRef, ReactNode } from 'react'
+import {
+  SPACE_122,
+  estimates,
+  yearsToExhaust,
+  prettyInt,
+  speakableWithName,
+} from '../lib/math'
 
-const items = (() => {
+type Item = {
+  title: string
+  num: number
+  format: (n: number) => string
+  foot: ReactNode
+  detail: ReactNode
+}
+
+const items: Item[] = (() => {
   const perGrain = SPACE_122.div(estimates.grainsOfSand)
   const perPerson = SPACE_122.div(estimates.people)
   const yearsAt1Bps = yearsToExhaust('1e9', SPACE_122)
@@ -11,7 +32,8 @@ const items = (() => {
   return [
     {
       title: 'Per grain of sand',
-      value: `${speakableWithName(perGrain)} GUIDs`,
+      num: perGrain.toNumber(),
+      format: (n) => `${speakableWithName(new Decimal(n))} GUIDs`,
       foot: (
         <>
           …for every grain of sand on Earth<sup>1</sup>
@@ -21,7 +43,8 @@ const items = (() => {
     },
     {
       title: 'Per person alive',
-      value: `${speakableWithName(perPerson)} GUIDs`,
+      num: perPerson.toNumber(),
+      format: (n) => `${speakableWithName(new Decimal(n))} GUIDs`,
       foot: (
         <>
           …for each of the ~8 billion people<sup>2</sup>
@@ -31,7 +54,8 @@ const items = (() => {
     },
     {
       title: 'Time to “run out”',
-      value: `${speakableWithName(yearsAt1Bps)} years`,
+      num: yearsAt1Bps.toNumber(),
+      format: (n) => `${speakableWithName(new Decimal(n))} years`,
       foot: '…if you minted 1 billion GUIDs per second',
       detail: (
         <>
@@ -41,12 +65,42 @@ const items = (() => {
     },
     {
       title: 'Coin‑flip analogy',
-      value: `${coinFlips} flips`,
+      num: coinFlips,
+      format: (n) => `${Math.round(n)} flips`,
       foot: 'Equivalent to flipping 122 fair coins',
       detail: '…and using the exact head/tail sequence as your ID',
     },
   ]
 })()
+
+function StatCard({ title, num, format, foot, detail, index }: Item & { index: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.3 })
+  const motionValue = useMotionValue(0)
+  const display = useTransform(motionValue, (latest) => format(latest))
+
+  useEffect(() => {
+    if (inView) {
+      animate(motionValue, num, { duration: 1.2, ease: 'easeOut' })
+    }
+  }, [inView, num, motionValue])
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20, scale: 0.98 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+      className="backdrop-blur-card rounded-2xl p-6"
+    >
+      <p className="text-white/70 text-sm">{title}</p>
+      <motion.p className="text-2xl font-semibold mt-2">{display}</motion.p>
+      <p className="text-white/60 text-xs mt-1">{foot}</p>
+      <p className="text-white/50 text-xs mt-3">{detail}</p>
+    </motion.div>
+  )
+}
 
 export default function StatGrid() {
   return (
@@ -64,19 +118,7 @@ export default function StatGrid() {
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {items.map((it, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20, scale: 0.98 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="backdrop-blur-card rounded-2xl p-6"
-            >
-              <p className="text-white/70 text-sm">{it.title}</p>
-              <p className="text-2xl font-semibold mt-2">{it.value}</p>
-              <p className="text-white/60 text-xs mt-1">{it.foot}</p>
-              <p className="text-white/50 text-xs mt-3">{it.detail}</p>
-            </motion.div>
+            <StatCard key={i} index={i} {...it} />
           ))}
         </div>
       </div>
