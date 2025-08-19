@@ -2,12 +2,13 @@ import { useEffect, useRef } from 'react'
 
 export default function ParallaxStars() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const scrollRef = useRef(0)
 
   useEffect(() => {
     const canvas = canvasRef.current!
     const ctx = canvas.getContext('2d')!
-    let width = canvas.width = window.innerWidth
-    let height = canvas.height = window.innerHeight
+    let width = (canvas.width = window.innerWidth)
+    let height = (canvas.height = window.innerHeight)
     let raf = 0
 
     const stars = Array.from({ length: 400 }, () => ({
@@ -29,17 +30,24 @@ export default function ParallaxStars() {
       const y = getComputedStyle(root).getPropertyValue('--y') || '50%'
       canvas.style.backgroundImage = `radial-gradient(600px circle at ${x} ${y}, rgba(124,58,237,0.08), transparent 40%)`
 
+      const scrollFactor = scrollRef.current * 0.0005
       for (const s of stars) {
         const size = s.z * 1.2
         ctx.fillStyle = `rgba(255,255,255,${0.3 + s.z * 0.7})`
         ctx.fillRect(s.x, s.y, size, size)
-        s.y += s.z * 0.1
-        if (s.y > height) { s.y = 0; s.x = Math.random() * width }
+        s.y += s.z * (0.1 + scrollFactor)
+        if (s.y > height) {
+          s.y = 0
+          s.x = Math.random() * width
+        }
       }
       raf = requestAnimationFrame(render)
     }
     raf = requestAnimationFrame(render)
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onResize) }
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', onResize)
+    }
   }, [])
 
   useEffect(() => {
@@ -50,6 +58,29 @@ export default function ParallaxStars() {
     }
     window.addEventListener('mousemove', onMove)
     return () => window.removeEventListener('mousemove', onMove)
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollRef.current = window.scrollY
+    }
+
+    const throttle = (fn: () => void, wait: number) => {
+      let timeout: ReturnType<typeof setTimeout> | null = null
+      return () => {
+        if (timeout === null) {
+          fn()
+          timeout = setTimeout(() => {
+            timeout = null
+          }, wait)
+        }
+      }
+    }
+
+    const throttledScroll = throttle(handleScroll, 100)
+    handleScroll()
+    window.addEventListener('scroll', throttledScroll)
+    return () => window.removeEventListener('scroll', throttledScroll)
   }, [])
 
   return <canvas ref={canvasRef} className="pointer-events-none fixed inset-0 -z-10" aria-hidden />
