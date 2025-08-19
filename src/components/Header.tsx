@@ -2,7 +2,7 @@ import { Github } from 'lucide-react'
 
 export default function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="sticky inset-x-0 top-0 z-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mt-4 rounded-2xl backdrop-blur-card">
           <div className="flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
