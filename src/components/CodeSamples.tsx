@@ -32,6 +32,15 @@ const samples = {
       '}',
     ],
   },
+  csharp: {
+    label: 'C#',
+    lines: [
+      'using System;',
+      '',
+      'var id = Guid.NewGuid();',
+      'Console.WriteLine(id);',
+    ],
+  },
 } as const
 
 type SampleKey = keyof typeof samples
