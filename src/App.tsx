@@ -8,6 +8,7 @@ import ParallaxStars from './components/ParallaxStars'
 import RelatableScenarios from './components/RelatableScenarios'
 import LayersExplainer from './components/LayersExplainer'
 import WitnessCalculator from './components/WitnessCalculator'
+import Sources from './components/Sources'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Generator />
         <LayersExplainer />
         <WitnessCalculator />
+        <Sources />
       </main>
     </div>
   )
