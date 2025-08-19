@@ -7,6 +7,7 @@ import ParallaxStars from './components/ParallaxStars'
 import RelatableScenarios from './components/RelatableScenarios'
 import LayersExplainer from './components/LayersExplainer'
 import WitnessCalculator from './components/WitnessCalculator'
+import Sources from './components/Sources'
 import Summary from './components/Summary'
 import Generator from './components/Generator'
 
@@ -23,8 +24,9 @@ export default function App() {
         <ProbabilityCalculator />
         <LayersExplainer />
         <WitnessCalculator />
-        <Summary />
         <Generator />
+        <Sources />
+        <Summary />
       </main>
     </div>
   )

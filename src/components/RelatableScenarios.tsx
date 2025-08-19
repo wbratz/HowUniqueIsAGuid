@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import Decimal from 'decimal.js-light'
-import { SPACE_122, speakableWithName } from '../lib/math'
+import { SPACE_122, speakableWithName, estimates } from '../lib/math'
 
 const ODDS_POWERBALL = new Decimal('292201338')
 const LN2 = Math.LN2
@@ -24,7 +24,7 @@ export default function RelatableScenarios() {
   const chars36 = charsNeeded(36)
   const chars62 = charsNeeded(62)
 
-  const grains = new Decimal('7.5e18')
+  const grains = estimates.grainsOfSand
   const grainsSquared = grains.pow(2)
   const sandOdds = speakableWithName(grainsSquared).replace('about ', '')
   const guidOdds = speakableWithName(SPACE_122).replace('about ', '')
@@ -63,7 +63,11 @@ export default function RelatableScenarios() {
       lead: 'Pick the exact same grain twice from all Earth’s beaches',
       blurb:
         'Doing it twice — mixing the sand between picks — is a bit less likely than two random GUIDs matching.',
-      foot: `Odds: ~1 in ${sandOdds} vs ~1 in ${guidOdds} for two GUIDs colliding.`,
+      foot: (
+        <>
+          Odds: ~1 in {sandOdds} vs ~1 in {guidOdds} for two GUIDs colliding.<sup>1</sup>
+        </>
+      ),
     },
   ]
 
