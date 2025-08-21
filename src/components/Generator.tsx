@@ -20,6 +20,7 @@ function uuidv4() {
 export default function Generator() {
   const [ids, setIds] = useState<string[]>([])
   const [copied, setCopied] = useState(false)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   const generate = (count = 5) => {
     const next = Array.from({ length: count }, () => uuidv4())
@@ -30,6 +31,12 @@ export default function Generator() {
     await navigator.clipboard.writeText(ids.join('\n'))
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
+  }
+
+  const copyId = async (id: string, index: number) => {
+    await navigator.clipboard.writeText(id)
+    setCopiedIndex(index)
+    setTimeout(() => setCopiedIndex(null), 1500)
   }
 
   return (
@@ -70,9 +77,18 @@ export default function Generator() {
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {ids.map((id, i) => (
-              <div key={i} className="rounded-lg bg-white/5 px-3 py-2 font-mono text-sm">
+              <button
+                key={i}
+                onClick={() => copyId(id, i)}
+                className="relative text-left rounded-lg bg-white/5 px-3 py-2 font-mono text-sm hover:bg-white/10"
+              >
                 {id}
-              </div>
+                {copiedIndex === i && (
+                  <span className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/80 text-xs text-white">
+                    Copied!
+                  </span>
+                )}
+              </button>
             ))}
           </div>
         </div>
