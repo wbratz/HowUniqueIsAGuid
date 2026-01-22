@@ -17,9 +17,12 @@ export default function Summary() {
         <div className="mt-6 backdrop-blur-card rounded-2xl p-6">
           <ul className="list-disc list-inside space-y-2 text-white/80">
             <li>
-              Version-4 GUIDs give you 122 bits of randomness — over 5.32 × 10^36 possibilities.
+              Version-4 GUIDs have 122 coin-flips worth of randomness — over 5 undecillion
+              possibilities.
             </li>
-            <li>Even at global scales, the odds of any collision remain astronomically small.</li>
+            <li>
+              Even at global scales, the odds of any two GUIDs matching remain astronomically small.
+            </li>
             <li>
               Spotting a duplicate yourself is even rarer, factoring in visibility and recognition.
             </li>

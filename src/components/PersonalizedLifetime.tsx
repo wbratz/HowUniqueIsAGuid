@@ -142,7 +142,7 @@ export default function PersonalizedLifetime() {
 
               <p className="text-center text-white/50 text-sm pt-2">
                 Even after {result.age} years of non-stop generation, you'd have barely scratched
-                the surface of the v4 GUID space.
+                the surface of all possible GUIDs.
               </p>
             </motion.div>
           )}

@@ -69,9 +69,9 @@ export default function TimeOnPage() {
           </div>
 
           <p className="text-sm text-white/50 max-w-lg mx-auto">
-            And not a single collision. At ~50,000 GUIDs per second globally, it would take{' '}
-            <span className="text-white/70">168 billion years</span> to exhaust just 1% of the v4
-            space.
+            And not a single duplicate. At ~50,000 GUIDs per second globally, it would take{' '}
+            <span className="text-white/70">168 billion years</span> to use just 1% of all possible
+            GUIDs.
           </p>
 
           <p className="mt-4 text-xs text-white/30">

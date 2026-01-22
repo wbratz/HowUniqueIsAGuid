@@ -33,7 +33,7 @@ export default function Hero() {
               <p className="mt-1 text-white/60 text-xs">{zerosLine(SPACE_128)}</p>
             </div>
             <div className="backdrop-blur-card rounded-2xl p-6 shadow-glow">
-              <h3 className="text-lg font-semibold mb-2">Random v4 space (usable)</h3>
+              <h3 className="text-lg font-semibold mb-2">Usable GUIDs (version 4)</h3>
               <p className="text-2xl font-bold">{speakable(SPACE_122)}</p>
               <p className="mt-2 text-white/70 text-sm">Math form: 2^122 ≈ 5.32 × 10^36</p>
               <p className="mt-1 text-white/60 text-xs">{zerosLine(SPACE_122)}</p>
@@ -43,13 +43,14 @@ export default function Hero() {
           <div className="mt-10 backdrop-blur-card rounded-2xl p-6">
             <p className="text-sm text-white/70">
               Chance that <span className="font-semibold">any two</span> match after generating{' '}
-              <em>n</em> GUIDs (the birthday effect):
+              <em>n</em> GUIDs:
             </p>
             <p className="text-xl md:text-2xl font-mono mt-3">
               p(n) ≈ 1 − exp( − n·(n−1) / ( 2 · 2^122 ) )
             </p>
             <p className="mt-3 text-xs text-white/60">
-              Assuming independent, uniformly random v4 GUIDs per RFC 4122.
+              Like asking "do any two people share a birthday?" — but with 5 undecillion
+              "birthdays."
             </p>
           </div>
         </motion.div>

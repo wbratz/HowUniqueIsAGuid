@@ -43,7 +43,7 @@ export default function RelatableScenarios() {
         'Doing it twice — mixing the sand between picks — is a bit less likely than two random GUIDs matching.',
       foot: (
         <>
-          Odds: ~1 in {sandOdds} vs ~1 in {guidOdds} for two GUIDs colliding.<sup>1</sup>
+          Odds: ~1 in {sandOdds} vs ~1 in {guidOdds} for two GUIDs matching.<sup>1</sup>
         </>
       ),
     },
@@ -51,14 +51,14 @@ export default function RelatableScenarios() {
       title: 'Gamer dice',
       lead: `Match a specific ${kD20}-roll D20 sequence`,
       blurb:
-        'Write down 28 exact D20 results (like 7, 13, 20, …). Rolling that exact sequence is on the same scale as a two‑GUID collision.',
+        'Write down 28 exact D20 results (like 7, 13, 20, …). Rolling that exact sequence is on the same scale as a two GUIDs matching.',
       foot: 'Uses base^k ≈ 2^122 with base = 20.',
     },
     {
       title: 'Typing a random code',
       lead: `Match a random ${chars36}-character code`,
       blurb:
-        'With upper‑case letters and digits only (A–Z, 0–9), ~24 random characters is comparable to a two‑GUID collision.',
+        'With upper‑case letters and digits only (A–Z, 0–9), ~24 random characters is comparable to a two GUIDs matching.',
       foot: '36^24 is slightly larger than 2^122; 23 would be slightly smaller.',
     },
   ]

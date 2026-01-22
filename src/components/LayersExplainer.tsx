@@ -6,7 +6,7 @@ export default function LayersExplainer() {
     {
       icon: <Cog className="h-6 w-6" />,
       title: 'Generate',
-      text: 'Somewhere in the world, two processes happen to mint the same 128-bit GUID (v4). This is the base collision event.',
+      text: 'Somewhere in the world, two systems happen to create the same GUID. This is where a duplicate is born.',
     },
     {
       icon: <Eye className="h-6 w-6" />,
@@ -16,7 +16,7 @@ export default function LayersExplainer() {
     {
       icon: <AlertCircle className="h-6 w-6" />,
       title: 'Recognize',
-      text: 'Your tooling or your team detects that the two IDs are identical and flags it as a collision.',
+      text: 'Your tooling or your team detects that the two IDs are identical and flags it as a duplicate.',
     },
   ]
   return (
@@ -29,7 +29,7 @@ export default function LayersExplainer() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-bold text-center"
         >
-          Three layers from collision to <em>you</em> noticing
+          Three layers from a duplicate to <em>you</em> noticing
         </motion.h2>
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">

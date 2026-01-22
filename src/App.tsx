@@ -23,8 +23,8 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <StatGrid />
         <TimeOnPage />
+        <StatGrid />
         <DeepComparisons />
         <RelatableScenarios />
         <ProbabilityCalculator />
