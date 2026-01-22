@@ -10,14 +10,14 @@
 
 **This website exists to create AWE and WONDER about GUIDs.**
 
-The primary goal is NOT to educate engineers—it's to make non-technical people say "WOW" and truly *feel* how mind-bogglingly unique GUIDs are. Every design decision, animation, and interaction should prioritize:
+The primary goal is NOT to educate engineers—it's to make non-technical people say "WOW" and truly _feel_ how mind-bogglingly unique GUIDs are. Every design decision, animation, and interaction should prioritize:
 
 1. **Visual Impact** - Stunning, memorable, share-worthy aesthetics
 2. **Emotional Connection** - Make abstract numbers feel real and awe-inspiring
 3. **Accessibility to Non-Engineers** - No jargon, relatable comparisons, "speakable" numbers
 4. **Delight** - Smooth animations, satisfying interactions, beautiful transitions
 
-**When making ANY change, ask**: *"Does this increase the wow factor? Will non-engineers find this beautiful?"*
+**When making ANY change, ask**: _"Does this increase the wow factor? Will non-engineers find this beautiful?"_
 
 ---
 
@@ -78,6 +78,7 @@ GUIDs are objectively incredible—2^122 possible combinations is a number so la
 ### What This Means for Development
 
 **✅ DO**:
+
 - Add delightful micro-animations (hover states, transitions)
 - Create interactive visualizations that respond to user input
 - Use analogies everyone understands (sand, atoms, lottery tickets)
@@ -86,6 +87,7 @@ GUIDs are objectively incredible—2^122 possible combinations is a number so la
 - Optimize for sharing (beautiful on social media previews)
 
 **❌ DON'T**:
+
 - Add features that require technical knowledge to understand
 - Use jargon without explaining it in human terms
 - Prioritize performance optimizations over visual polish (unless it's janky)
@@ -105,14 +107,17 @@ If the answer to any is "no", reconsider the approach.
 ### Examples of the Philosophy in Action
 
 **Example 1: Number Formatting**
+
 - ❌ Engineer: "2^122 = 5.316911983 × 10^36"
 - ✅ This Site: "About **5 undecillion**" (with small "2^122 ≈ 5.3 × 10^36" below)
 
 **Example 2: Probability Calculator**
+
 - ❌ Engineer: "P(collision) = 1 - exp(-n(n-1)/2S)"
 - ✅ This Site: Interactive input → "0.000001% chance" → "That's like rolling 5 specific dice numbers in a row"
 
 **Example 3: Visual Hierarchy**
+
 - ❌ Engineer: Dense paragraph explaining birthday paradox
 - ✅ This Site: Animated counting numbers → Fade-in analogy → Expandable "show math" section
 
@@ -120,11 +125,12 @@ If the answer to any is "no", reconsider the approach.
 
 **Conversational, Wonder-Filled, Confident**
 
-- "GUIDs are *absurdly* unique" (not "GUIDs have low collision probability")
-- "You'd need to generate a billion GUIDs *every second* for 168 billion years" (not "exhaustion time is 1.68 × 10^11 years")
+- "GUIDs are _absurdly_ unique" (not "GUIDs have low collision probability")
+- "You'd need to generate a billion GUIDs _every second_ for 168 billion years" (not "exhaustion time is 1.68 × 10^11 years")
 - "Let's put that in perspective..." (not "To demonstrate this mathematically...")
 
 **Hierarchy of Communication**:
+
 1. **Emotional hook** (the "wow")
 2. **Relatable analogy** (make it tangible)
 3. **The number** (satisfy curiosity)
@@ -141,6 +147,7 @@ If the answer to any is "no", reconsider the approach.
 This is a **visually breathtaking experience** that makes GUID uniqueness feel REAL through:
 
 **"Wow Factor" Features**:
+
 - 🌌 **Parallax starfield** - Immersive depth that mirrors the vastness of GUID space
 - ✨ **Animated bit grid** - Watch GUIDs come to life with randomizing bits
 - 🎲 **Interactive calculators** - Type numbers, watch probabilities animate dramatically
@@ -152,11 +159,13 @@ This is a **visually breathtaking experience** that makes GUID uniqueness feel R
 - 📋 **One-click GUID generator** - Satisfying copy-to-clipboard with visual feedback
 
 **Target Audience (In Priority Order)**:
+
 1. **Primary**: Non-engineers who love beautiful, mind-blowing internet experiences
 2. **Secondary**: Developers who want to share GUID uniqueness with non-technical stakeholders
 3. **Tertiary**: Engineers who appreciate both visual polish AND mathematical rigor
 
 **Design Philosophy**:
+
 - **Beauty > Technical Completeness** - If it's not stunning, it doesn't ship
 - **Feel > Facts** - Make users FEEL the incomprehensibility before showing the math
 - **Delight > Efficiency** - A 1.2s count-up animation is BETTER than instant (it builds anticipation)
@@ -168,23 +177,28 @@ This is a **visually breathtaking experience** that makes GUID uniqueness feel R
 ## Tech Stack
 
 ### Core Framework
+
 - **React** 18.3.1 - Functional components with hooks
 - **TypeScript** 5.4.5 - Strict mode enabled
 - **Vite** 5.4.2 - Build tool and dev server
 
 ### Styling & UI
+
 - **Tailwind CSS** 3.4.10 - Utility-first styling
 - **Framer Motion** 11.2.14 - Scroll-triggered animations
 - **Lucide React** 0.470.0 - Icon library
 
 ### Mathematics & Utilities
+
 - **Decimal.js-light** 2.5.1 - Arbitrary-precision decimal arithmetic for large numbers (2^128, etc.)
 
 ### Development Tools
+
 - **Prettier** 3.3.3 - Code formatting
 - **PostCSS** 8.4.39 + **Autoprefixer** 10.4.19 - CSS processing
 
 ### Browser APIs Used
+
 - **Web Crypto API** - Secure GUID generation (`crypto.getRandomValues`)
 - **Canvas API** - Parallax starfield animation
 - **Clipboard API** - Copy-to-clipboard functionality
@@ -235,12 +249,12 @@ This is a **visually breathtaking experience** that makes GUID uniqueness feel R
 
 ### Directory Responsibilities
 
-| Directory | Purpose | Key Files |
-|-----------|---------|-----------|
-| `/src/lib/` | Pure utility functions, mathematical calculations, constants | `math.ts` |
-| `/src/components/` | React UI components (one component per file) | All `.tsx` files |
-| `/public/` | Static assets served as-is | `og-image.svg` |
-| Root | Configuration files | `vite.config.ts`, `tailwind.config.js`, `tsconfig.json` |
+| Directory          | Purpose                                                      | Key Files                                               |
+| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
+| `/src/lib/`        | Pure utility functions, mathematical calculations, constants | `math.ts`                                               |
+| `/src/components/` | React UI components (one component per file)                 | All `.tsx` files                                        |
+| `/public/`         | Static assets served as-is                                   | `og-image.svg`                                          |
+| Root               | Configuration files                                          | `vite.config.ts`, `tailwind.config.js`, `tsconfig.json` |
 
 ---
 
@@ -267,12 +281,12 @@ npm run preview
 
 ### Available Scripts
 
-| Script | Command | Purpose |
-|--------|---------|---------|
-| `dev` | `vite` | Start dev server on port 5173 with hot reload |
-| `build` | `tsc -b && vite build` | Type-check and build for production |
-| `preview` | `vite preview` | Preview production build locally |
-| `format` | `prettier --write .` | Format all files with Prettier |
+| Script    | Command                | Purpose                                       |
+| --------- | ---------------------- | --------------------------------------------- |
+| `dev`     | `vite`                 | Start dev server on port 5173 with hot reload |
+| `build`   | `tsc -b && vite build` | Type-check and build for production           |
+| `preview` | `vite preview`         | Preview production build locally              |
+| `format`  | `prettier --write .`   | Format all files with Prettier                |
 
 ### Development Server Configuration
 
@@ -308,10 +322,10 @@ npm run preview
 
 ```json
 {
-  "semi": false,                 // No semicolons
-  "singleQuote": true,           // Use 'single quotes' for strings
-  "trailingComma": "all",        // Trailing commas everywhere
-  "printWidth": 100              // 100 character line width
+  "semi": false, // No semicolons
+  "singleQuote": true, // Use 'single quotes' for strings
+  "trailingComma": "all", // Trailing commas everywhere
+  "printWidth": 100 // 100 character line width
 }
 ```
 
@@ -358,6 +372,7 @@ bytes[8] = ((bytes[8] ?? 0) & 0x3f) | 0x80
 #### 1. Pure Presentational Components
 
 **Characteristics**:
+
 - No internal state
 - Props-driven rendering
 - No side effects
@@ -393,6 +408,7 @@ export default function LayersExplainer() {
 #### 2. Stateful Container Components
 
 **Characteristics**:
+
 - Manages local state with `useState`
 - Handles user interactions
 - Computes derived values with `useMemo`
@@ -434,6 +450,7 @@ export default function ProbabilityCalculator() {
 ### State Management Philosophy
 
 **NO GLOBAL STATE** - This project intentionally avoids:
+
 - Redux / Zustand / Jotai
 - React Context (except Framer Motion's built-in)
 - URL state / query parameters
@@ -441,6 +458,7 @@ export default function ProbabilityCalculator() {
 **Reasoning**: The application is a linear narrative with no routing or shared state needs.
 
 **State Location Rules**:
+
 1. **Component-local state** - Default choice (`useState`)
 2. **Derived state** - Use `useMemo` for expensive calculations
 3. **Ref-based state** - Use `useRef` for values that don't trigger re-renders (e.g., canvas refs, scroll position)
@@ -498,6 +516,7 @@ export default function App() {
 Every color, shadow, blur, and transition exists to make users feel like they're experiencing something special. This is a premium, polished, "I want to share this" experience.
 
 **Visual Hierarchy**:
+
 1. **Glassmorphism** - Frosted glass cards that feel tactile and premium
 2. **Depth & Parallax** - Layered elements that create immersion
 3. **Subtle Glows** - Purple accent glows that draw attention without overwhelming
@@ -505,6 +524,7 @@ Every color, shadow, blur, and transition exists to make users feel like they're
 5. **High Contrast** - Dark theme with crisp white text for maximum readability
 
 **Style Philosophy**:
+
 - **Delight over minimalism** - It's okay to be visually rich if it enhances the experience
 - **Polished over plain** - Invest in micro-interactions and hover states
 - **Consistent over varied** - Maintain the glassmorphism aesthetic throughout
@@ -540,17 +560,15 @@ backgroundImage: {
 .backdrop-blur-card {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 ```
 
 **Usage**: Applied to all card-like elements for glassmorphism effect.
 
 ```tsx
-<div className="backdrop-blur-card rounded-2xl p-6 shadow-lg">
-  {/* Card content */}
-</div>
+<div className="backdrop-blur-card rounded-2xl p-6 shadow-lg">{/* Card content */}</div>
 ```
 
 ### Styling Patterns
@@ -573,6 +591,7 @@ backgroundImage: {
 ```
 
 **Opacity Scale**:
+
 - `text-white` (100%) - Primary content
 - `text-white/90` (90%) - Subheadings
 - `text-white/70` (70%) - Body text
@@ -588,6 +607,7 @@ backgroundImage: {
 ```
 
 **Breakpoints**:
+
 - `sm:` - 640px
 - `md:` - 768px
 - `lg:` - 1024px
@@ -597,12 +617,14 @@ backgroundImage: {
 #### 4. Interactive States
 
 ```tsx
-<button className="
+<button
+  className="
   bg-accent text-white
   hover:bg-accent/90          /* Darken on hover */
   focus:ring-2 focus:ring-accent/50  /* Accessible focus ring */
   transition-all duration-200  /* Smooth transitions */
-">
+"
+>
   Click me
 </button>
 ```
@@ -610,6 +632,7 @@ backgroundImage: {
 #### 5. Spacing Rhythm
 
 **Vertical Spacing**:
+
 - Section padding: `py-20` (80px)
 - Card gaps: `gap-6` (24px)
 - Text spacing: `mt-4` (16px) between paragraphs
@@ -618,23 +641,21 @@ backgroundImage: {
 <section className="mx-auto max-w-6xl px-6 py-20">
   <h2 className="text-4xl font-bold">Title</h2>
   <p className="mt-4 text-lg">Paragraph</p>
-  <div className="mt-8 grid gap-6">
-    {/* Cards */}
-  </div>
+  <div className="mt-8 grid gap-6">{/* Cards */}</div>
 </section>
 ```
 
 ### Color Usage Guidelines
 
-| Element | Class | Purpose |
-|---------|-------|---------|
-| Background | `bg-bg` | Main page background |
-| Cards | `backdrop-blur-card` | Glassmorphism cards |
-| Primary actions | `bg-accent` | Buttons, links, highlights |
-| Headings | `text-white` | Maximum contrast |
-| Body text | `text-white/70` | Readable but not harsh |
-| Borders | `border-white/10` | Subtle separation |
-| Hover states | `hover:bg-white/15` | Interactive feedback |
+| Element         | Class                | Purpose                    |
+| --------------- | -------------------- | -------------------------- |
+| Background      | `bg-bg`              | Main page background       |
+| Cards           | `backdrop-blur-card` | Glassmorphism cards        |
+| Primary actions | `bg-accent`          | Buttons, links, highlights |
+| Headings        | `text-white`         | Maximum contrast           |
+| Body text       | `text-white/70`      | Readable but not harsh     |
+| Borders         | `border-white/10`    | Subtle separation          |
+| Hover states    | `hover:bg-white/15`  | Interactive feedback       |
 
 ### Accessibility Considerations
 
@@ -662,8 +683,8 @@ backgroundImage: {
 {
   "compilerOptions": {
     "target": "ES2020",
-    "strict": true,                       // Enable all strict checks
-    "noUncheckedIndexedAccess": true,     // Prevent unsafe array access
+    "strict": true, // Enable all strict checks
+    "noUncheckedIndexedAccess": true, // Prevent unsafe array access
     "jsx": "react-jsx",
     "moduleResolution": "bundler"
   }
@@ -682,7 +703,7 @@ function Slider({
   min = 0,
   max = 1,
   step = 0.001,
-  suffix = ''
+  suffix = '',
 }: {
   label: string
   value: number
@@ -730,7 +751,7 @@ const canvas = canvasRef.current!
 const ctx = canvas.getContext('2d')!
 
 // ❌ Unsafe: Array access without bounds checking
-const firstItem = items[0]!  // May be undefined if array is empty
+const firstItem = items[0]! // May be undefined if array is empty
 ```
 
 ### Type Guards
@@ -779,6 +800,7 @@ export function collisionProbability(n: Num, space: Num = SPACE_122) {
 **Animations are not decoration—they're the STORYTELLING mechanism.**
 
 Every fade, slide, and count-up serves a purpose:
+
 - **Build anticipation** - Numbers counting up create "I wonder how high it'll go"
 - **Guide attention** - Staggered reveals show users where to look next
 - **Create rhythm** - Scroll-triggered effects make the page feel alive
@@ -786,6 +808,7 @@ Every fade, slide, and count-up serves a purpose:
 - **Delight users** - Smooth, polished motion feels premium
 
 **Animation Philosophy**:
+
 - **Purposeful, not gratuitous** - Every animation should enhance understanding or create delight
 - **Smooth, never janky** - 60fps or bust (use motion values for heavy animations)
 - **Timed for emotion** - 1.2s count-up feels more dramatic than 0.3s instant reveal
@@ -810,6 +833,7 @@ Every fade, slide, and count-up serves a purpose:
 ```
 
 **Key Properties**:
+
 - `initial` - Starting state (hidden, 20px down)
 - `whileInView` - Target state when scrolled into view
 - `viewport={{ once: true }}` - Animate only once (don't re-trigger on scroll up)
@@ -865,6 +889,7 @@ function AnimatedCounter({ num }: { num: number }) {
 ```
 
 **Explanation**:
+
 - `useMotionValue(0)` - Creates animatable value starting at 0
 - `useTransform()` - Transforms motion value to formatted string
 - `animate()` - Animates from 0 to `num` over 1.2 seconds
@@ -882,7 +907,7 @@ useEffect(() => {
 
   // Start animation when either in view OR hovered
   const interval = setInterval(() => {
-    setBits(prev => randomizeBits(prev))
+    setBits((prev) => randomizeBits(prev))
   }, 200)
 
   return () => clearInterval(interval)
@@ -899,13 +924,13 @@ useEffect(() => {
 
 ### Common Animation Durations
 
-| Animation Type | Duration | Easing |
-|----------------|----------|--------|
-| Fade in | 0.6s | Default |
-| Slide in | 0.5s | Default |
-| Number count-up | 1.2s | `easeOut` |
-| Button hover | 0.2s | Default |
-| Card hover | 0.3s | Default |
+| Animation Type  | Duration | Easing    |
+| --------------- | -------- | --------- |
+| Fade in         | 0.6s     | Default   |
+| Slide in        | 0.5s     | Default   |
+| Number count-up | 1.2s     | `easeOut` |
+| Button hover    | 0.2s     | Default   |
+| Card hover      | 0.3s     | Default   |
 
 ---
 
@@ -918,57 +943,69 @@ useEffect(() => {
 ```typescript
 export const TWO = new Decimal(2)
 export const BITS_TOTAL = new Decimal(128)
-export const BITS_RANDOM_V4 = new Decimal(122)  // 6 bits fixed by v4 spec
-export const SPACE_128 = TWO.pow(BITS_TOTAL)    // 2^128 ≈ 3.4 × 10^38
+export const BITS_RANDOM_V4 = new Decimal(122) // 6 bits fixed by v4 spec
+export const SPACE_128 = TWO.pow(BITS_TOTAL) // 2^128 ≈ 3.4 × 10^38
 export const SPACE_122 = TWO.pow(BITS_RANDOM_V4) // 2^122 ≈ 5.3 × 10^36
 ```
 
 **Why two spaces?**
+
 - `SPACE_128` - Theoretical GUID space (all 128 bits random)
 - `SPACE_122` - Actual v4 GUID space (6 bits reserved for version + variant)
 
 #### Core Calculations
 
 **Birthday Paradox Probability**:
+
 ```typescript
 export function collisionProbability(n: Num, space: Num = SPACE_122): Decimal
 ```
+
 Formula: `p ≈ 1 − exp(−n(n−1) / (2·space))`
 
 **Expected Collision Pairs**:
+
 ```typescript
 export function expectedPairs(n: Num, space: Num = SPACE_122): Decimal
 ```
+
 Formula: `λ = n(n−1) / (2·space)` (Poisson parameter)
 
 **Witness Probability**:
+
 ```typescript
 export function witnessProbability(
   n: Num,
   exposureFraction: Num,
   recognition: Num,
-  space: Num = SPACE_122
+  space: Num = SPACE_122,
 ): Decimal
 ```
+
 Formula: `λ_seen = λ · e² · d`, where:
+
 - `e` = exposure fraction (what % of GUIDs you see)
 - `d` = recognition probability (do you notice the collision?)
 
 **Years to Exhaust Space**:
+
 ```typescript
 export function yearsToExhaust(ratePerSecond: Num, space: Num = SPACE_122): Decimal
 ```
+
 Formula: `space / ratePerSecond / (60 × 60 × 24 × 365)`
 
 #### Formatting Functions
 
 **Scientific Notation**:
+
 ```typescript
-export function scientificParts(d: Decimal): { coeff: string, exp: number }
+export function scientificParts(d: Decimal): { coeff: string; exp: number }
 // Example: 3.4e38 → { coeff: "3.40", exp: 38 }
 ```
 
 **Speakable Numbers**:
+
 ```typescript
 export function speakable(d: Decimal): string
 // Example: 3.4e38 → "about 3.40 undecillion"
@@ -978,12 +1015,14 @@ export function speakableWithName(d: Decimal): string
 ```
 
 **Pretty Integers**:
+
 ```typescript
 export function prettyInt(d: Decimal): string
 // Example: 1000000 → "1 000 000"
 ```
 
 **Big Number Formatting**:
+
 ```typescript
 export function formatBig(d: Decimal, dp = 2): string
 // Uses scientific notation for numbers > 1e6 or < 1e-3
@@ -998,6 +1037,7 @@ export function parseFlexibleNumber(s: string): Decimal
 ```
 
 **Sanitization pattern used throughout**:
+
 ```typescript
 const sanitize = (s: string) => s.replace(/[,_\s]/g, '')
 ```
@@ -1009,7 +1049,7 @@ const sanitize = (s: string) => s.replace(/[,_\s]/g, '')
 ```typescript
 function uuidv4(): string {
   const bytes = new Uint8Array(16)
-  crypto.getRandomValues(bytes)  // Cryptographically secure random
+  crypto.getRandomValues(bytes) // Cryptographically secure random
 
   // Set version bits (4)
   bytes[6] = ((bytes[6] ?? 0) & 0x0f) | 0x40
@@ -1039,7 +1079,9 @@ const throttle = (fn: () => void, wait: number) => {
   return () => {
     if (timeout === null) {
       fn()
-      timeout = setTimeout(() => { timeout = null }, wait)
+      timeout = setTimeout(() => {
+        timeout = null
+      }, wait)
     }
   }
 }
@@ -1086,20 +1128,21 @@ window.addEventListener('scroll', throttledScroll)
 
 #### Decision Framework
 
-| Scenario | Priority | Example |
-|----------|----------|---------|
-| **Visual enhancement** | ✅ HIGH | Adding particle effects, smoother animations, better hover states |
-| **Accessibility improvement** | ✅ HIGH | Better contrast, ARIA labels, keyboard navigation |
-| **Performance (if janky)** | ✅ HIGH | Stuttering animations, slow load times |
-| **New "wow" feature** | ✅ MEDIUM | Interactive 3D GUID visualization, sound effects |
-| **Technical accuracy** | ⚠️ MEDIUM | Fixing math formulas (if incorrect), but present beautifully |
-| **Code refactoring** | ⚠️ LOW | Only if it enables future visual enhancements |
-| **Performance (if smooth)** | ⚠️ LOW | Micro-optimizations when experience is already smooth |
-| **Engineer-only features** | ❌ DEPRIORITIZE | Dense technical explanations without visual counterpart |
+| Scenario                      | Priority        | Example                                                           |
+| ----------------------------- | --------------- | ----------------------------------------------------------------- |
+| **Visual enhancement**        | ✅ HIGH         | Adding particle effects, smoother animations, better hover states |
+| **Accessibility improvement** | ✅ HIGH         | Better contrast, ARIA labels, keyboard navigation                 |
+| **Performance (if janky)**    | ✅ HIGH         | Stuttering animations, slow load times                            |
+| **New "wow" feature**         | ✅ MEDIUM       | Interactive 3D GUID visualization, sound effects                  |
+| **Technical accuracy**        | ⚠️ MEDIUM       | Fixing math formulas (if incorrect), but present beautifully      |
+| **Code refactoring**          | ⚠️ LOW          | Only if it enables future visual enhancements                     |
+| **Performance (if smooth)**   | ⚠️ LOW          | Micro-optimizations when experience is already smooth             |
+| **Engineer-only features**    | ❌ DEPRIORITIZE | Dense technical explanations without visual counterpart           |
 
 #### Examples of Good vs. Bad Changes
 
 **✅ GOOD Changes (Aligned with Mission)**:
+
 - Add glow effect to GUID generator button on hover
 - Animate numbers counting up with easing curve
 - Create parallax effect on scroll for section headers
@@ -1109,6 +1152,7 @@ window.addEventListener('scroll', throttledScroll)
 - Improve mobile layout so cards stack beautifully
 
 **❌ BAD Changes (Misaligned with Mission)**:
+
 - Add detailed technical explanation of UUID RFC 4122 specification
 - Replace "about 5 undecillion" with precise "5.316911983 × 10^36"
 - Remove animations to improve performance (if already smooth)
@@ -1117,6 +1161,7 @@ window.addEventListener('scroll', throttledScroll)
 - Add features that require understanding of probability theory
 
 **🤔 MAYBE Changes (Require Judgment)**:
+
 - Add "show more math" expandable sections → **✅ YES** if hidden by default, **❌ NO** if it clutters the main view
 - Optimize bundle size from 300KB to 250KB → **⚠️ LOW PRIORITY** unless it affects load time perception
 - Add loading states → **✅ YES** if animated and beautiful, **❌ NO** if just a spinner
@@ -1125,6 +1170,7 @@ window.addEventListener('scroll', throttledScroll)
 ### Adding a New Section
 
 1. **Create component file** in `src/components/`:
+
    ```typescript
    // src/components/NewSection.tsx
    import { motion } from 'framer-motion'
@@ -1148,6 +1194,7 @@ window.addEventListener('scroll', throttledScroll)
    ```
 
 2. **Import in `App.tsx`**:
+
    ```typescript
    import NewSection from './components/NewSection'
    ```
@@ -1172,6 +1219,7 @@ window.addEventListener('scroll', throttledScroll)
 ### Adding a New Utility Function
 
 1. **Add to `lib/math.ts`**:
+
    ```typescript
    export function newCalculation(input: Num): Decimal {
      const n = new Decimal(input)
@@ -1200,6 +1248,7 @@ window.addEventListener('scroll', throttledScroll)
    ```
 
 **Common icons used**:
+
 - `Calculator` - Calculators
 - `Eye`, `User`, `Cog` - Layers explainer
 - `Github` - GitHub link
@@ -1227,12 +1276,14 @@ npm run dev
 ### Debugging Tips
 
 **React DevTools**:
+
 ```bash
 # Install React DevTools browser extension
 # View component tree, props, state, hooks
 ```
 
 **Decimal.js debugging**:
+
 ```typescript
 // Log Decimal as number
 console.log(decimalValue.toNumber())
@@ -1245,6 +1296,7 @@ console.log(decimalValue.toExponential())
 ```
 
 **Framer Motion debugging**:
+
 ```tsx
 // Add visual debugging
 <motion.div
@@ -1271,6 +1323,7 @@ ls -lh dist/
 **Build output location**: `/dist`
 
 **Typical build size**:
+
 - HTML: ~2 KB
 - JS (main): ~200-300 KB (minified + gzipped)
 - CSS: ~5-10 KB
@@ -1286,12 +1339,14 @@ This project makes deliberate trade-offs in favor of the "wow factor". Here's wh
 #### Visual Beauty > Performance (within reason)
 
 **✅ Acceptable Trade-offs**:
+
 - 1.2s number count-up animation instead of instant display (builds anticipation)
 - 300KB bundle size with Framer Motion instead of 150KB with vanilla JS (smooth animations)
 - Multiple parallax layers instead of static background (creates depth)
 - Backdrop blur on every card (premium aesthetic) even if slightly slower on old devices
 
 **❌ Unacceptable Trade-offs**:
+
 - Animations that stutter or drop frames (janky = unprofessional)
 - Load times > 3s on modern devices (users will bounce)
 - Memory leaks that crash tabs (broken = not beautiful)
@@ -1302,11 +1357,13 @@ This project makes deliberate trade-offs in favor of the "wow factor". Here's wh
 #### Visual Clarity > Technical Precision (in presentation)
 
 **✅ Good Choices**:
+
 - Headline: "About 5 undecillion" → Small text below: "2^122 ≈ 5.3 × 10^36"
 - Say: "More GUIDs than atoms in the universe" → Expandable: "Show calculation"
 - Input accepts: "1000000", "1,000,000", "1_000_000", "1e6" (user-friendly)
 
 **❌ Bad Choices**:
+
 - Leading with notation: "5.316911983 × 10^36" without context
 - Assuming users know what "birthday paradox" means without explanation
 - Showing only the formula without a relatable analogy
@@ -1316,12 +1373,14 @@ This project makes deliberate trade-offs in favor of the "wow factor". Here's wh
 #### Animation Duration > Instant Feedback (for dramatic moments)
 
 **✅ When to Add Delay**:
+
 - Number count-ups (1.2s with easing) - builds anticipation
 - Section reveals on scroll (0.6s fade) - creates rhythm
 - Staggered card animations (50ms delay per card) - directs attention
 - Button state transitions (200-300ms) - feels polished
 
 **❌ When NOT to Add Delay**:
+
 - Clipboard copy feedback (instant + 1.5s checkmark) - users expect speed
 - Input validation (instant) - delays feel broken
 - Hover states (100-200ms max) - longer feels sluggish
@@ -1332,6 +1391,7 @@ This project makes deliberate trade-offs in favor of the "wow factor". Here's wh
 #### Mobile Experience = Desktop Experience
 
 **Non-Negotiable**:
+
 - Every animation must work beautifully on mobile
 - Touch targets must be thumb-friendly (44×44px minimum)
 - Parallax effects should not cause scroll jank
@@ -1379,10 +1439,12 @@ If you can't answer "yes" to at least 4/5, reconsider the change.
 ### Branching Strategy
 
 **Main branches**:
+
 - `main` (or default branch) - Production-ready code
 - `claude/*` - Feature branches created by AI assistants
 
 **Branch naming convention for AI assistants**:
+
 ```
 claude/descriptive-feature-name-{sessionId}
 ```
@@ -1400,6 +1462,7 @@ Example: `claude/add-mobile-nav-ukVwn`
 ```
 
 **Types**:
+
 - `feat` - New feature (e.g., "feat: add mobile navigation")
 - `fix` - Bug fix (e.g., "fix: correct collision probability formula")
 - `docs` - Documentation (e.g., "docs: update README with new features")
@@ -1409,6 +1472,7 @@ Example: `claude/add-mobile-nav-ukVwn`
 - `chore` - Build/tooling (e.g., "chore: update dependencies")
 
 **Examples**:
+
 ```bash
 git commit -m "feat: add copy-to-clipboard for individual GUIDs"
 git commit -m "fix: improve mobile navigation layout"
@@ -1429,11 +1493,13 @@ Before committing:
 ### Push and PR Process
 
 **Push to branch**:
+
 ```bash
 git push -u origin claude/feature-name-{sessionId}
 ```
 
 **Create Pull Request**:
+
 ```bash
 # Using GitHub CLI
 gh pr create --title "Add feature X" --body "$(cat <<'EOF'
@@ -1450,11 +1516,14 @@ EOF
 ```
 
 **PR Template**:
+
 ```markdown
 ## Summary
+
 - Brief bullet points of changes
 
 ## Test plan
+
 - [ ] Tested locally
 - [ ] Verified responsive design
 - [ ] Checked browser compatibility
@@ -1506,6 +1575,7 @@ git checkout -b claude/new-feature-ukVwn
 **Priority**: Smooth animations > Small bundle size
 
 1. **Decimal.js operations are expensive** - Use `useMemo` for calculations:
+
    ```typescript
    const result = useMemo(() => {
      return expensiveCalculation(input)
@@ -1513,11 +1583,13 @@ git checkout -b claude/new-feature-ukVwn
    ```
 
 2. **Scroll events are frequent** - Always throttle scroll listeners:
+
    ```typescript
    const throttledScroll = throttle(handleScroll, 100)
    ```
 
 3. **Canvas operations are synchronous** - Use `requestAnimationFrame` for animations:
+
    ```typescript
    const render = () => {
      ctx.clearRect(0, 0, width, height)
@@ -1531,12 +1603,14 @@ git checkout -b claude/new-feature-ukVwn
 ### Browser Compatibility
 
 **Minimum browser versions**:
+
 - Chrome 90+
 - Firefox 88+
 - Safari 15.4+
 - Edge 90+
 
 **Required APIs**:
+
 - Web Crypto API (`crypto.getRandomValues`)
 - Canvas API
 - Clipboard API (`navigator.clipboard`)
@@ -1546,10 +1620,12 @@ git checkout -b claude/new-feature-ukVwn
 ### Mobile Considerations
 
 **Touch-friendly targets**:
+
 - Minimum button size: 44×44px (iOS guideline)
 - Padding on interactive elements: `px-6 py-3` or larger
 
 **Responsive breakpoints**:
+
 ```tsx
 // Mobile-first approach
 <div className="
@@ -1560,6 +1636,7 @@ git checkout -b claude/new-feature-ukVwn
 ```
 
 **Mobile testing**:
+
 ```bash
 # Find local IP
 ifconfig | grep inet
@@ -1571,15 +1648,18 @@ ifconfig | grep inet
 ### Security Considerations
 
 **GUID Generation**:
+
 - ✅ Uses `crypto.getRandomValues()` (cryptographically secure)
 - ❌ DO NOT use `Math.random()` for GUID generation
 
 **Input Validation**:
+
 - Always validate and sanitize user input
 - Use try-catch for Decimal parsing
 - Check for `Number.isFinite()` before arithmetic
 
 **Dependencies**:
+
 - Keep dependencies updated: `npm audit`
 - Review security advisories: `npm audit fix`
 
@@ -1587,27 +1667,29 @@ ifconfig | grep inet
 
 ## Key Files Quick Reference
 
-| File | Purpose | When to Edit |
-|------|---------|--------------|
-| `src/App.tsx` | Main component orchestration | Adding/removing sections |
-| `src/lib/math.ts` | Mathematical utilities | Adding calculations |
-| `src/index.css` | Global styles | Adding custom CSS |
-| `tailwind.config.js` | Tailwind theme | Adding colors/utilities |
-| `vite.config.ts` | Build configuration | Changing build settings |
-| `package.json` | Dependencies and scripts | Adding packages |
-| `.prettierrc` | Code formatting rules | Changing format style |
+| File                 | Purpose                      | When to Edit             |
+| -------------------- | ---------------------------- | ------------------------ |
+| `src/App.tsx`        | Main component orchestration | Adding/removing sections |
+| `src/lib/math.ts`    | Mathematical utilities       | Adding calculations      |
+| `src/index.css`      | Global styles                | Adding custom CSS        |
+| `tailwind.config.js` | Tailwind theme               | Adding colors/utilities  |
+| `vite.config.ts`     | Build configuration          | Changing build settings  |
+| `package.json`       | Dependencies and scripts     | Adding packages          |
+| `.prettierrc`        | Code formatting rules        | Changing format style    |
 
 ---
 
 ## Questions & Support
 
 **For AI Assistants**:
+
 - This document should provide everything needed to work on this project
 - When in doubt, refer to existing component patterns in `src/components/`
 - Follow the established conventions strictly
 - Always format code with Prettier before committing
 
 **For Humans**:
+
 - Issues: https://github.com/wbratz/HowUniqueIsAGuid/issues
 - Pull Requests: Follow the PR template above
 - Questions: Open a GitHub Discussion

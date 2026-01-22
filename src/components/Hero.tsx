@@ -17,7 +17,12 @@ export default function Hero() {
           </h1>
           <BitGrid />
           <p className="mt-4 text-white/70 max-w-2xl mx-auto">
-            GUIDs (also called UUIDs) are 128‑bit identifiers — think of <span className="font-semibold">128 on/off switches</span>. In version 4 (the random kind), <span className="font-semibold">6 of those switches are reserved</span> to label the version and rules, so <span className="font-semibold">122 switches are truly random</span>. That’s about the same randomness as <span className="font-semibold">122 coin flips</span>.
+            GUIDs (also called UUIDs) are 128‑bit identifiers — think of{' '}
+            <span className="font-semibold">128 on/off switches</span>. In version 4 (the random
+            kind), <span className="font-semibold">6 of those switches are reserved</span> to label
+            the version and rules, so{' '}
+            <span className="font-semibold">122 switches are truly random</span>. That’s about the
+            same randomness as <span className="font-semibold">122 coin flips</span>.
           </p>
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -37,12 +42,15 @@ export default function Hero() {
 
           <div className="mt-10 backdrop-blur-card rounded-2xl p-6">
             <p className="text-sm text-white/70">
-              Chance that <span className="font-semibold">any two</span> match after generating <em>n</em> GUIDs (the birthday effect):
+              Chance that <span className="font-semibold">any two</span> match after generating{' '}
+              <em>n</em> GUIDs (the birthday effect):
             </p>
             <p className="text-xl md:text-2xl font-mono mt-3">
               p(n) ≈ 1 − exp( − n·(n−1) / ( 2 · 2^122 ) )
             </p>
-            <p className="mt-3 text-xs text-white/60">Assuming independent, uniformly random v4 GUIDs per RFC 4122.</p>
+            <p className="mt-3 text-xs text-white/60">
+              Assuming independent, uniformly random v4 GUIDs per RFC 4122.
+            </p>
           </div>
         </motion.div>
       </div>
