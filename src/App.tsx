@@ -1,5 +1,7 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
+import WhatIsGuid from './components/WhatIsGuid'
+import RealWorldExamples from './components/RealWorldExamples'
 import StatGrid from './components/StatGrid'
 import ProbabilityCalculator from './components/ProbabilityCalculator'
 import DeepComparisons from './components/DeepComparisons'
@@ -23,7 +25,9 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <WhatIsGuid />
         <TimeOnPage />
+        <RealWorldExamples />
         <StatGrid />
         <DeepComparisons />
         <RelatableScenarios />
