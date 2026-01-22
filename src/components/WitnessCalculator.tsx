@@ -95,11 +95,11 @@ export default function WitnessCalculator() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-bold text-center"
         >
-          Your odds of actually <em>witnessing</em> a collision
+          Your odds of actually <em>witnessing</em> a duplicate
         </motion.h2>
 
         <p className="mt-4 text-white/70 text-center max-w-3xl mx-auto">
-          There are three layers: (1) a collision exists somewhere, (2){' '}
+          There are three layers: (1) a duplicate exists somewhere, (2){' '}
           <span className="font-semibold">you</span> touch both IDs, and (3) you{' '}
           <span className="font-semibold">notice</span> it. This model combines all three.
         </p>
@@ -156,7 +156,7 @@ export default function WitnessCalculator() {
               <>
                 <p className="text-sm text-white/70">Global draws in window</p>
                 <p className="text-lg font-semibold">{prettyInt(result.nGlobal)} GUIDs</p>
-                <p className="mt-2 text-sm text-white/70">Expected global collisions (λ)</p>
+                <p className="mt-2 text-sm text-white/70">Expected global duplicates (λ)</p>
                 <p className="text-lg font-semibold">{fmt(result.lambda)}</p>
                 <div className="mt-4 border-t border-white/10 pt-4">
                   <p className="text-sm text-white/70">Chance any duplicate exists (global)</p>

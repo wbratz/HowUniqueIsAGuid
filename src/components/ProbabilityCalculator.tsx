@@ -42,7 +42,7 @@ export default function ProbabilityCalculator() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-bold text-center"
         >
-          Will any two match? (birthday probability)
+          Will any two match?
         </motion.h2>
 
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -96,7 +96,8 @@ export default function ProbabilityCalculator() {
               </AnimatePresence>
             </div>
             <p className="mt-4 text-xs text-white/60">
-              Uses the birthday approximation p ≈ 1 − exp(−n(n−1) / (2·2^122)).
+              Like the "same birthday in a room" problem — the more GUIDs, the higher the chance any
+              two match.
             </p>
             <AnimatePresence mode="wait">
               {result.interp && (
