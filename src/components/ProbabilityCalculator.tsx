@@ -1,9 +1,11 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Decimal from 'decimal.js-light'
 import { useState, useMemo } from 'react'
 import { collisionProbability, SPACE_122 } from '../lib/math'
+import { usePrefersReducedMotion } from '../lib/hooks'
 
 export default function ProbabilityCalculator() {
+  const prefersReducedMotion = usePrefersReducedMotion()
   const examples = [
     { label: '1 million GUIDs', n: '1e6' },
     { label: '1 billion GUIDs', n: '1e9' },
@@ -19,8 +21,8 @@ export default function ProbabilityCalculator() {
     const clean = sanitize(nStr)
     if (!clean.trim()) return { text: '—', interp: '' }
     try {
-        const N = new Decimal(clean)
-        if (!Number.isFinite(N.toNumber()) || N.isNegative()) return { text: 'Invalid', interp: '' }
+      const N = new Decimal(clean)
+      if (!Number.isFinite(N.toNumber()) || N.isNegative()) return { text: 'Invalid', interp: '' }
       const p = collisionProbability(N, SPACE_122).mul(100)
       const text = p.lessThan(0.000001) ? p.toExponential(2) + '%' : p.toFixed(6) + '%'
       const interp = `If you create ${N.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} GUIDs, the chance any two are the same is ${text}.`
@@ -45,14 +47,16 @@ export default function ProbabilityCalculator() {
 
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 backdrop-blur-card rounded-2xl p-6">
-            <label htmlFor="n" className="text-sm text-white/70">How many GUIDs do you generate (n)?</label>
+            <label htmlFor="n" className="text-sm text-white/70">
+              How many GUIDs do you generate (n)?
+            </label>
             <input
               id="n"
               inputMode="numeric"
               value={nStr}
               onChange={(e) => setNStr(e.target.value)}
               placeholder="e.g., 50,000 or 1e9"
-              className="mt-2 w-full rounded-xl bg-white/5 px-4 py-3 outline-none ring-1 ring-white/10 focus:ring-accent/50"
+              className="mt-2 w-full rounded-xl bg-white/5 px-4 py-3 outline-none ring-1 ring-white/10 focus-glow transition-all"
             />
 
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -77,9 +81,37 @@ export default function ProbabilityCalculator() {
 
           <div className="backdrop-blur-card rounded-2xl p-6">
             <p className="text-sm text-white/70">Chance of at least one duplicate</p>
-            <p className="mt-2 text-4xl font-extrabold tracking-tight">{result.text}</p>
-            <p className="mt-4 text-xs text-white/60">Uses the birthday approximation p ≈ 1 − exp(−n(n−1) / (2·2^122)).</p>
-            <p className="mt-3 text-xs text-white/60">{result.interp}</p>
+            <div className="mt-2 h-12 relative overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={result.text}
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={prefersReducedMotion ? undefined : { opacity: 0, y: -20 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-4xl font-extrabold tracking-tight"
+                >
+                  {result.text}
+                </motion.p>
+              </AnimatePresence>
+            </div>
+            <p className="mt-4 text-xs text-white/60">
+              Uses the birthday approximation p ≈ 1 − exp(−n(n−1) / (2·2^122)).
+            </p>
+            <AnimatePresence mode="wait">
+              {result.interp && (
+                <motion.p
+                  key={result.interp}
+                  initial={prefersReducedMotion ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={prefersReducedMotion ? undefined : { opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="mt-3 text-xs text-white/60"
+                >
+                  {result.interp}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>

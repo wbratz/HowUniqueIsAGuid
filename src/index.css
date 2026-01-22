@@ -2,16 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { --x: 50%; --y: 50%; }
+:root {
+  --x: 50%;
+  --y: 50%;
+}
 
-* { scrollbar-color: rgba(255,255,255,0.2) transparent; scrollbar-width: thin; }
-*::-webkit-scrollbar { width: 8px; height: 8px; }
-*::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 999px; }
-*::-webkit-scrollbar-track { background: transparent; }
+* {
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  scrollbar-width: thin;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
 
 .backdrop-blur-card {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Enhanced glow effect for primary buttons */
+.glow-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-button::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #7c3aed, #a78bfa, #7c3aed);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  filter: blur(8px);
+}
+
+.glow-button:hover::before {
+  opacity: 0.6;
+}
+
+/* Pulsing glow animation for CTA buttons */
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(124, 58, 237, 0.3),
+      0 0 40px rgba(124, 58, 237, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(124, 58, 237, 0.5),
+      0 0 60px rgba(124, 58, 237, 0.2);
+  }
+}
+
+/* Focus glow for inputs */
+.focus-glow:focus {
+  box-shadow:
+    0 0 0 2px rgba(124, 58, 237, 0.3),
+    0 0 20px rgba(124, 58, 237, 0.2);
+  outline: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .glow-pulse {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

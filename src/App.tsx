@@ -11,20 +11,26 @@ import Sources from './components/Sources'
 import Summary from './components/Summary'
 import Generator from './components/Generator'
 import CodeSamples from './components/CodeSamples'
+import ScrollProgress from './components/ScrollProgress'
+import TimeOnPage from './components/TimeOnPage'
+import PersonalizedLifetime from './components/PersonalizedLifetime'
 
 export default function App() {
   return (
     <div className="relative min-h-screen bg-grid bg-[length:24px_24px]">
+      <ScrollProgress />
       <ParallaxStars />
       <Header />
       <main>
         <Hero />
         <StatGrid />
+        <TimeOnPage />
         <DeepComparisons />
         <RelatableScenarios />
         <ProbabilityCalculator />
         <LayersExplainer />
         <WitnessCalculator />
+        <PersonalizedLifetime />
         <Generator />
         <CodeSamples />
         <Summary />
