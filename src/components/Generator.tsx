@@ -1,6 +1,25 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Copy, Sparkles } from 'lucide-react'
+import confetti from 'canvas-confetti'
+
+const celebrate = (intensity: 'light' | 'medium' | 'heavy' = 'medium') => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (prefersReducedMotion) return
+
+  const configs = {
+    light: { particleCount: 30, spread: 50 },
+    medium: { particleCount: 80, spread: 70 },
+    heavy: { particleCount: 150, spread: 100 },
+  }
+  const config = configs[intensity]
+
+  confetti({
+    ...config,
+    origin: { y: 0.7 },
+    colors: ['#7c3aed', '#a78bfa', '#c4b5fd', '#ddd6fe', '#ffffff'],
+  })
+}
 
 function uuidv4() {
   const bytes = new Uint8Array(16)
@@ -21,10 +40,28 @@ export default function Generator() {
   const [ids, setIds] = useState<string[]>([])
   const [copied, setCopied] = useState(false)
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const totalGenerated = useRef(0)
+  const hasGeneratedFirst = useRef(false)
 
   const generate = (count = 5) => {
     const next = Array.from({ length: count }, () => uuidv4())
     setIds((prev) => [...next, ...prev].slice(0, 25))
+
+    // Celebrate first generation
+    if (!hasGeneratedFirst.current) {
+      hasGeneratedFirst.current = true
+      celebrate('medium')
+    }
+
+    // Celebrate milestones
+    const prevTotal = totalGenerated.current
+    totalGenerated.current += count
+    const newTotal = totalGenerated.current
+
+    // Celebrate at 50, 100, 200 GUIDs
+    if (prevTotal < 50 && newTotal >= 50) celebrate('light')
+    if (prevTotal < 100 && newTotal >= 100) celebrate('medium')
+    if (prevTotal < 200 && newTotal >= 200) celebrate('heavy')
   }
 
   const copyAll = async () => {
@@ -56,7 +93,7 @@ export default function Generator() {
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => generate(5)}
-              className="inline-flex items-center gap-2 rounded-xl bg-accent/90 px-4 py-3 font-semibold shadow-glow hover:bg-accent"
+              className="inline-flex items-center gap-2 rounded-xl bg-accent/90 px-4 py-3 font-semibold shadow-glow hover:bg-accent glow-button glow-pulse"
             >
               <Sparkles className="h-5 w-5" /> Generate 5
             </button>

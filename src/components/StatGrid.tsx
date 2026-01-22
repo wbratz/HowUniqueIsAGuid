@@ -1,19 +1,7 @@
-import {
-  motion,
-  useInView,
-  useMotionValue,
-  useTransform,
-  animate,
-} from 'framer-motion'
+import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion'
 import Decimal from 'decimal.js-light'
 import { useEffect, useRef, ReactNode } from 'react'
-import {
-  SPACE_122,
-  estimates,
-  yearsToExhaust,
-  prettyInt,
-  speakableWithName,
-} from '../lib/math'
+import { SPACE_122, estimates, yearsToExhaust, prettyInt, speakableWithName } from '../lib/math'
 
 type Item = {
   title: string

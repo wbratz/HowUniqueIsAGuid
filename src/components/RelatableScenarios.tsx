@@ -22,7 +22,6 @@ export default function RelatableScenarios() {
   const kPowerball = powerballWinsEquivalent()
   const kD20 = Math.round(rollsNeeded(20))
   const chars36 = charsNeeded(36)
-  const chars62 = charsNeeded(62)
 
   const grains = estimates.grainsOfSand
   const grainsSquared = grains.pow(2)
@@ -38,29 +37,8 @@ export default function RelatableScenarios() {
       foot: 'Powerball odds are 1 in 292,201,338 per drawing; assumes independence.',
     },
     {
-      title: 'Gamer dice',
-      lead: `Match a specific ${kD20}-roll D20 sequence`,
-      blurb:
-        'Write down 28 exact D20 results (like 7, 13, 20, …). Rolling that exact sequence is on the same scale as a two‑GUID collision.',
-      foot: 'Uses base^k ≈ 2^122 with base = 20.',
-    },
-    {
-      title: 'Typing a random code (A–Z, 0–9)',
-      lead: `Match a random ${chars36}-character code`,
-      blurb:
-        'With upper‑case letters and digits only, ~24 random characters is comparable to a two‑GUID collision.',
-      foot: '36^24 is slightly larger than 2^122; 23 would be slightly smaller.',
-    },
-    {
-      title: 'Typing a random code (a–z, A–Z, 0–9)',
-      lead: `Match a random ${chars62}-character code`,
-      blurb:
-        'Using upper+lower+digits, about 21 characters is on the same order as a two‑GUID collision.',
-      foot: '62^21 ≈ 2^122 (order of magnitude).',
-    },
-    {
       title: 'Sand, twice in a row',
-      lead: 'Pick the exact same grain twice from all Earth’s beaches',
+      lead: "Pick the exact same grain twice from all Earth's beaches",
       blurb:
         'Doing it twice — mixing the sand between picks — is a bit less likely than two random GUIDs matching.',
       foot: (
@@ -68,6 +46,20 @@ export default function RelatableScenarios() {
           Odds: ~1 in {sandOdds} vs ~1 in {guidOdds} for two GUIDs colliding.<sup>1</sup>
         </>
       ),
+    },
+    {
+      title: 'Gamer dice',
+      lead: `Match a specific ${kD20}-roll D20 sequence`,
+      blurb:
+        'Write down 28 exact D20 results (like 7, 13, 20, …). Rolling that exact sequence is on the same scale as a two‑GUID collision.',
+      foot: 'Uses base^k ≈ 2^122 with base = 20.',
+    },
+    {
+      title: 'Typing a random code',
+      lead: `Match a random ${chars36}-character code`,
+      blurb:
+        'With upper‑case letters and digits only (A–Z, 0–9), ~24 random characters is comparable to a two‑GUID collision.',
+      foot: '36^24 is slightly larger than 2^122; 23 would be slightly smaller.',
     },
   ]
 
