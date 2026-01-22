@@ -24,9 +24,9 @@ export default function App() {
       <ParallaxStars />
       <Header />
       <main>
-        <Hero />
         <WhatIsGuid />
         <TimeOnPage />
+        <Hero />
         <RealWorldExamples />
         <StatGrid />
         <DeepComparisons />
