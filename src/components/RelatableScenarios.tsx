@@ -82,30 +82,35 @@ export default function RelatableScenarios() {
         </motion.h2>
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {cards.map((c, i) => (
-            <motion.div
-              key={i}
-              id={c.id}
-              initial={{ opacity: 0, y: 20, scale: 0.98 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5, delay: i * 0.04 }}
-              className="rounded-2xl backdrop-blur-card p-6 group"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <p className="text-sm text-white/70">{c.title}</p>
-                <ShareButton
-                  section={c.id}
-                  title={c.lead}
-                  text={`${c.title}: ${c.lead}`}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity"
-                />
-              </div>
-              <p className="mt-2 text-xl font-semibold">{c.lead}</p>
-              <p className="mt-2 text-sm text-white/60">{c.blurb}</p>
-              <p className="mt-3 text-xs text-white/50">{c.foot}</p>
-            </motion.div>
-          ))}
+          {cards.map((c, i) => {
+            // Create contextual share text that makes sense standalone
+            const shareText = `How likely are two random GUIDs to match? ${c.lead.charAt(0).toUpperCase() + c.lead.slice(1)}.`
+
+            return (
+              <motion.div
+                key={i}
+                id={c.id}
+                initial={{ opacity: 0, y: 20, scale: 0.98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: i * 0.04 }}
+                className="rounded-2xl backdrop-blur-card p-6 group"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <p className="text-sm text-white/70">{c.title}</p>
+                  <ShareButton
+                    section={c.id}
+                    title={c.lead}
+                    text={shareText}
+                    className="opacity-0 group-hover:opacity-100 transition-opacity"
+                  />
+                </div>
+                <p className="mt-2 text-xl font-semibold">{c.lead}</p>
+                <p className="mt-2 text-sm text-white/60">{c.blurb}</p>
+                <p className="mt-3 text-xs text-white/50">{c.foot}</p>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
