@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import Decimal from 'decimal.js-light'
 import { SPACE_122, speakableWithName, estimates } from '../lib/math'
+import ShareButton from './ShareButton'
 
 const ODDS_POWERBALL = new Decimal('292201338')
 const LN2 = Math.LN2
@@ -30,6 +31,7 @@ export default function RelatableScenarios() {
 
   const cards = [
     {
+      id: 'lottery-streak',
       title: 'Lottery streak',
       lead: `Win Powerball about ${kPowerball.toFixed(2)} times in a row`,
       blurb:
@@ -37,6 +39,7 @@ export default function RelatableScenarios() {
       foot: 'Powerball odds are 1 in 292,201,338 per drawing; assumes independence.',
     },
     {
+      id: 'sand-twice',
       title: 'Sand, twice in a row',
       lead: "Pick the exact same grain twice from all Earth's beaches",
       blurb:
@@ -48,6 +51,7 @@ export default function RelatableScenarios() {
       ),
     },
     {
+      id: 'gamer-dice',
       title: 'Gamer dice',
       lead: `Match a specific ${kD20}-roll D20 sequence`,
       blurb:
@@ -55,6 +59,7 @@ export default function RelatableScenarios() {
       foot: 'Uses base^k ≈ 2^122 with base = 20.',
     },
     {
+      id: 'random-code',
       title: 'Typing a random code',
       lead: `Match a random ${chars36}-character code`,
       blurb:
@@ -80,13 +85,22 @@ export default function RelatableScenarios() {
           {cards.map((c, i) => (
             <motion.div
               key={i}
+              id={c.id}
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: i * 0.04 }}
-              className="rounded-2xl backdrop-blur-card p-6"
+              className="rounded-2xl backdrop-blur-card p-6 group"
             >
-              <p className="text-sm text-white/70">{c.title}</p>
+              <div className="flex items-start justify-between gap-2">
+                <p className="text-sm text-white/70">{c.title}</p>
+                <ShareButton
+                  section={c.id}
+                  title={c.lead}
+                  text={`${c.title}: ${c.lead}`}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity"
+                />
+              </div>
               <p className="mt-2 text-xl font-semibold">{c.lead}</p>
               <p className="mt-2 text-sm text-white/60">{c.blurb}</p>
               <p className="mt-3 text-xs text-white/50">{c.foot}</p>
