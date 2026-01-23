@@ -11,6 +11,7 @@ type Item = {
   format: (n: number) => string
   foot: ReactNode
   detail: ReactNode
+  shareText: string
 }
 
 const items: Item[] = (() => {
@@ -31,6 +32,7 @@ const items: Item[] = (() => {
         </>
       ),
       detail: `~${prettyInt(perGrain)} per grain`,
+      shareText: `There are ${speakableWithName(perGrain)} possible GUIDs for every grain of sand on Earth.`,
     },
     {
       id: 'guids-per-person',
@@ -43,6 +45,7 @@ const items: Item[] = (() => {
         </>
       ),
       detail: `${prettyInt(perPerson)} each`,
+      shareText: `There are ${speakableWithName(perPerson)} possible GUIDs for each person alive on Earth.`,
     },
     {
       id: 'time-to-exhaust',
@@ -55,6 +58,7 @@ const items: Item[] = (() => {
           That's astronomically longer than the age of the universe<sup>3</sup>
         </>
       ),
+      shareText: `Generating 1 billion GUIDs per second, it would take ${speakableWithName(yearsAt1Bps)} years to run out. That's astronomically longer than the age of the universe.`,
     },
     {
       id: 'coin-flip-analogy',
@@ -63,11 +67,21 @@ const items: Item[] = (() => {
       format: (n) => `${Math.round(n)} flips`,
       foot: 'Equivalent to flipping 122 fair coins',
       detail: '…and using the exact head/tail sequence as your ID',
+      shareText: `A GUID has 122 random bits - like flipping 122 coins and using the exact head/tail sequence as your unique ID.`,
     },
   ]
 })()
 
-function StatCard({ id, title, num, format, foot, detail, index }: Item & { index: number }) {
+function StatCard({
+  id,
+  title,
+  num,
+  format,
+  foot,
+  detail,
+  shareText,
+  index,
+}: Item & { index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.3 })
   const motionValue = useMotionValue(0)
@@ -94,7 +108,7 @@ function StatCard({ id, title, num, format, foot, detail, index }: Item & { inde
         <ShareButton
           section={id}
           title={`${format(num)} ${title}`}
-          text={`GUID fact: ${format(num)} ${title}`}
+          text={shareText}
           className="opacity-0 group-hover:opacity-100 transition-opacity"
         />
       </div>
