@@ -1,6 +1,5 @@
 import Header from './components/Header'
 import HeroTop from './components/HeroTop'
-import HeroDetails from './components/HeroDetails'
 import WhatIsGuid from './components/WhatIsGuid'
 import RealWorldExamples from './components/RealWorldExamples'
 import StatGrid from './components/StatGrid'
@@ -28,7 +27,6 @@ export default function App() {
         <HeroTop />
         <WhatIsGuid />
         <TimeOnPage />
-        <HeroDetails />
         <RealWorldExamples />
         <StatGrid />
         <DeepComparisons />
