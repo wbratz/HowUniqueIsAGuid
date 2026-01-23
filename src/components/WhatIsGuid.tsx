@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Fingerprint } from 'lucide-react'
+import { Fingerprint, Copy, Check } from 'lucide-react'
 
 function generateExampleGuid(): string {
   const hex = '0123456789abcdef'
@@ -14,6 +14,7 @@ function generateExampleGuid(): string {
 
 export default function WhatIsGuid() {
   const [exampleGuid, setExampleGuid] = useState(generateExampleGuid())
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,6 +22,12 @@ export default function WhatIsGuid() {
     }, 3000)
     return () => clearInterval(interval)
   }, [])
+
+  const copyGuid = async () => {
+    await navigator.clipboard.writeText(exampleGuid)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
 
   return (
     <section className="py-10 md:py-16">
@@ -50,8 +57,23 @@ export default function WhatIsGuid() {
             in the world, ever.
           </p>
 
-          <div className="mt-6 p-4 rounded-xl bg-white/5 border border-white/10">
-            <p className="text-xs text-white/50 mb-2">Example GUID (changes every 3 seconds)</p>
+          <button
+            onClick={copyGuid}
+            className="mt-6 p-4 rounded-xl bg-white/5 border border-white/10 w-full text-center hover:bg-white/10 hover:border-accent/50 transition-all cursor-pointer group"
+          >
+            <p className="text-xs text-white/50 mb-2 flex items-center justify-center gap-2">
+              {copied ? (
+                <>
+                  <Check className="h-3 w-3 text-green-400" />
+                  <span className="text-green-400">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span>Click to copy • Changes every 3 seconds</span>
+                </>
+              )}
+            </p>
             <motion.p
               key={exampleGuid}
               initial={{ opacity: 0 }}
@@ -60,7 +82,7 @@ export default function WhatIsGuid() {
             >
               {exampleGuid}
             </motion.p>
-          </div>
+          </button>
 
           <p className="mt-6 text-sm text-white/50">
             That's it — just a really, really unique ID. Now let's explore <em>how</em> unique...
