@@ -65,6 +65,11 @@ export default function WhatIsGuid() {
           <p className="mt-6 text-sm text-white/50">
             That's it — just a really, really unique ID. Now let's explore <em>how</em> unique...
           </p>
+
+          <p className="mt-4 text-xs text-white/40">
+            Technical note: GUIDs use 128 bits of data — like 128 on/off switches. In version 4 (the
+            random kind), 122 of those are truly random, equivalent to 122 coin flips.
+          </p>
         </motion.div>
       </div>
     </section>
