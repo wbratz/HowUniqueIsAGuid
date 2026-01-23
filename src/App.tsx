@@ -1,5 +1,8 @@
 import Header from './components/Header'
-import Hero from './components/Hero'
+import HeroTop from './components/HeroTop'
+import HeroDetails from './components/HeroDetails'
+import WhatIsGuid from './components/WhatIsGuid'
+import RealWorldExamples from './components/RealWorldExamples'
 import StatGrid from './components/StatGrid'
 import ProbabilityCalculator from './components/ProbabilityCalculator'
 import DeepComparisons from './components/DeepComparisons'
@@ -22,8 +25,11 @@ export default function App() {
       <ParallaxStars />
       <Header />
       <main>
-        <Hero />
+        <HeroTop />
+        <WhatIsGuid />
         <TimeOnPage />
+        <HeroDetails />
+        <RealWorldExamples />
         <StatGrid />
         <DeepComparisons />
         <RelatableScenarios />
