@@ -2,7 +2,7 @@
 
 **Repository**: https://github.com/wbratz/HowUniqueIsAGuid
 **Purpose**: A visually stunning, "wow factor" experience that showcases the beauty and uniqueness of GUIDs to non-engineers through breathtaking visualizations and interactive storytelling
-**Last Updated**: 2026-01-20
+**Last Updated**: 2026-02-05
 
 ---
 
@@ -192,6 +192,10 @@ This is a **visually breathtaking experience** that makes GUID uniqueness feel R
 
 - **Decimal.js-light** 2.5.1 - Arbitrary-precision decimal arithmetic for large numbers (2^128, etc.)
 
+### Effects
+
+- **canvas-confetti** 1.9.4 - Confetti animation effects (e.g., on GUID copy)
+
 ### Development Tools
 
 - **Prettier** 3.3.3 - Code formatting
@@ -203,6 +207,7 @@ This is a **visually breathtaking experience** that makes GUID uniqueness feel R
 - **Canvas API** - Parallax starfield animation
 - **Clipboard API** - Copy-to-clipboard functionality
 - **Intersection Observer** (via Framer Motion) - Scroll-triggered animations
+- **Vibration API** - Haptic feedback on supported mobile devices (via `useHaptic` hook)
 
 ---
 
@@ -211,11 +216,14 @@ This is a **visually breathtaking experience** that makes GUID uniqueness feel R
 ```
 /
 ├── index.html               # Entry HTML file
-├── package.json             # Dependencies and scripts
+├── package.json             # Dependencies and scripts (v1.1.0)
 ├── vite.config.ts           # Vite configuration
 ├── tailwind.config.js       # Tailwind theme customization
 ├── tsconfig.json            # TypeScript compiler options
+├── tsconfig.node.json       # TypeScript config for Vite (composite)
+├── postcss.config.js        # PostCSS + Autoprefixer configuration
 ├── .prettierrc              # Prettier formatting rules
+├── .gitignore               # Git ignore rules
 ├── README.md                # User-facing documentation
 ├── CLAUDE.md                # This file - AI assistant guide
 │
@@ -228,33 +236,42 @@ This is a **visually breathtaking experience** that makes GUID uniqueness feel R
     ├── index.css            # Global styles + Tailwind imports
     │
     ├── lib/
-    │   └── math.ts          # Mathematical utilities and constants
+    │   ├── math.ts          # Mathematical utilities and constants
+    │   └── hooks.ts         # Custom React hooks (animations, accessibility, haptics)
     │
     └── components/
         ├── Header.tsx                   # Sticky navigation header
-        ├── Hero.tsx                     # Hero section with bit grid
+        ├── HeroTop.tsx                  # Top hero section with intro
+        ├── HeroDetails.tsx              # Hero section detail content
+        ├── Hero.tsx                     # Legacy hero component
+        ├── WhatIsGuid.tsx               # GUID explanation for newcomers
         ├── BitGrid.tsx                  # Interactive 128-bit visualization
         ├── ParallaxStars.tsx            # Canvas-based starfield background
+        ├── ScrollProgress.tsx           # Visual scroll progress indicator
+        ├── TimeOnPage.tsx               # Engagement time tracker
+        ├── RealWorldExamples.tsx        # Practical real-world scenarios
         ├── StatGrid.tsx                 # Animated statistics cards
         ├── ProbabilityCalculator.tsx    # Birthday paradox calculator
         ├── DeepComparisons.tsx          # Universe/atoms comparisons
         ├── RelatableScenarios.tsx       # Lottery/dice/code comparisons
         ├── LayersExplainer.tsx          # Three-layer collision explanation
         ├── WitnessCalculator.tsx        # Advanced probability calculator
+        ├── PersonalizedLifetime.tsx     # User lifetime collision probability
         ├── Generator.tsx                # GUID generation tool
         ├── CodeSamples.tsx              # Multi-language code snippets
+        ├── ShareButton.tsx              # Social sharing functionality
         ├── Summary.tsx                  # Wrap-up section
         └── Sources.tsx                  # Citation references
 ```
 
 ### Directory Responsibilities
 
-| Directory          | Purpose                                                      | Key Files                                               |
-| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
-| `/src/lib/`        | Pure utility functions, mathematical calculations, constants | `math.ts`                                               |
-| `/src/components/` | React UI components (one component per file)                 | All `.tsx` files                                        |
-| `/public/`         | Static assets served as-is                                   | `og-image.svg`                                          |
-| Root               | Configuration files                                          | `vite.config.ts`, `tailwind.config.js`, `tsconfig.json` |
+| Directory          | Purpose                                                            | Key Files                                               |
+| ------------------ | ------------------------------------------------------------------ | ------------------------------------------------------- |
+| `/src/lib/`        | Pure utility functions, math calculations, constants, custom hooks | `math.ts`, `hooks.ts`                                   |
+| `/src/components/` | React UI components (one component per file, 22 files)             | All `.tsx` files                                        |
+| `/public/`         | Static assets served as-is                                         | `og-image.svg`                                          |
+| Root               | Configuration files                                                | `vite.config.ts`, `tailwind.config.js`, `tsconfig.json` |
 
 ---
 
@@ -341,6 +358,7 @@ import { Calculator } from 'lucide-react'
 
 // 2. Internal utilities
 import { collisionProbability, SPACE_122 } from '../lib/math'
+import { useAnimationProps, useHaptic } from '../lib/hooks'
 
 // 3. Type definitions (if not inline)
 import type { SampleKey } from './types'
@@ -488,17 +506,29 @@ Since components are stacked vertically with no nesting (see `App.tsx`), they **
 **Pattern**: Each section is **completely independent**.
 
 ```typescript
-// App.tsx
+// App.tsx - Full section order (18 components)
 export default function App() {
   return (
-    <div>
-      <ParallaxStars />
-      <Header />
+    <div className="relative min-h-screen bg-grid bg-[length:24px_24px]">
+      <ScrollProgress />        {/* Visual scroll indicator */}
+      <ParallaxStars />         {/* Canvas starfield background */}
+      <Header />                {/* Sticky navigation */}
       <main>
-        <Hero />           {/* Independent */}
-        <StatGrid />       {/* Independent */}
-        <DeepComparisons />{/* Independent */}
-        {/* ... */}
+        <HeroTop />             {/* Hero introduction */}
+        <WhatIsGuid />          {/* GUID explanation for newcomers */}
+        <TimeOnPage />          {/* Engagement time tracker */}
+        <RealWorldExamples />   {/* Practical comparisons */}
+        <StatGrid />            {/* Key statistics cards */}
+        <DeepComparisons />     {/* Universe/atoms scale */}
+        <RelatableScenarios />  {/* Lottery/dice odds */}
+        <ProbabilityCalculator /> {/* Birthday paradox calculator */}
+        <LayersExplainer />     {/* Three-layer collision model */}
+        <WitnessCalculator />   {/* Personal collision probability */}
+        <PersonalizedLifetime />{/* User lifetime analysis */}
+        <Generator />           {/* GUID generation tool */}
+        <CodeSamples />         {/* Multi-language code examples */}
+        <Summary />             {/* Wrap-up section */}
+        <Sources />             {/* References and citations */}
       </main>
     </div>
   )
@@ -553,23 +583,47 @@ backgroundImage: {
 
 ### Custom CSS Classes
 
-**ONLY ONE custom utility class exists**: `.backdrop-blur-card`
+Four custom utility classes are defined in `src/index.css`:
 
 ```css
-/* src/index.css */
+/* Glassmorphism card effect */
 .backdrop-blur-card {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+/* Enhanced glow button hover effect */
+.glow-button {
+  /* ... gradient glow on hover */
+}
+
+/* Pulsing glow animation for CTA buttons */
+.glow-pulse {
+  /* ... keyframe pulse animation */
+}
+
+/* Focus state glow for input fields */
+.focus-glow {
+  /* ... focus ring with glow */
+}
 ```
 
-**Usage**: Applied to all card-like elements for glassmorphism effect.
+| Class                 | Purpose                            | Usage                  |
+| --------------------- | ---------------------------------- | ---------------------- |
+| `.backdrop-blur-card` | Glassmorphism frosted-glass effect | All card-like elements |
+| `.glow-button`        | Enhanced glow on hover             | Primary action buttons |
+| `.glow-pulse`         | Pulsing glow animation             | Call-to-action buttons |
+| `.focus-glow`         | Glow effect on focus               | Input fields           |
+
+**Primary usage pattern**:
 
 ```tsx
 <div className="backdrop-blur-card rounded-2xl p-6 shadow-lg">{/* Card content */}</div>
 ```
+
+**Accessibility**: The CSS also includes a `@media (prefers-reduced-motion: reduce)` rule that disables all animations and transitions globally.
 
 ### Styling Patterns
 
@@ -671,7 +725,14 @@ backgroundImage: {
 
 // ✅ Sufficient contrast (WCAG AA compliant)
 <p className="text-white/70">Text meets 4.5:1 contrast ratio</p>
+
+// ✅ Respect reduced motion preferences
+const { fadeIn, shouldAnimate, getDuration } = useAnimationProps()
+// shouldAnimate is false when user prefers reduced motion
+// getDuration(1.2) returns 0 when reduced motion is preferred
 ```
+
+**Reduced Motion**: Both CSS-level (`@media (prefers-reduced-motion)`) and JS-level (`usePrefersReducedMotion` hook) support is implemented. The `useHaptic` hook also respects this preference.
 
 ---
 
@@ -818,6 +879,30 @@ Every fade, slide, and count-up serves a purpose:
 ### Framer Motion Usage
 
 **All animations use Framer Motion** - No custom CSS animations or transitions.
+
+**Reduced Motion Support**: The project respects `prefers-reduced-motion` at two levels:
+
+1. **CSS level** - `@media (prefers-reduced-motion: reduce)` in `index.css` disables all CSS transitions/animations
+2. **JS level** - The `useAnimationProps()` hook from `lib/hooks.ts` returns no-op animation configs when reduced motion is preferred
+
+**Preferred pattern**: Use `useAnimationProps()` instead of manually writing `initial`/`whileInView` props:
+
+```typescript
+import { useAnimationProps } from '../lib/hooks'
+
+export default function MySection() {
+  const { fadeIn, staggeredFadeIn } = useAnimationProps()
+
+  return (
+    <section>
+      <motion.h2 {...fadeIn}>Title</motion.h2>
+      {items.map((item, i) => (
+        <motion.div key={i} {...staggeredFadeIn(i)}>{item}</motion.div>
+      ))}
+    </section>
+  )
+}
+```
 
 ### Pattern 1: Fade In on Scroll
 
@@ -1090,6 +1175,61 @@ const throttle = (fn: () => void, wait: number) => {
 const throttledScroll = throttle(handleScroll, 100)
 window.addEventListener('scroll', throttledScroll)
 ```
+
+### Custom React Hooks (`lib/hooks.ts`)
+
+Three custom hooks provide animation and accessibility support:
+
+#### `usePrefersReducedMotion()`
+
+Detects the user's `prefers-reduced-motion` system preference. Updates reactively when the preference changes.
+
+```typescript
+const prefersReducedMotion = usePrefersReducedMotion()
+// Returns: boolean
+```
+
+#### `useAnimationProps()`
+
+Provides standardized animation configuration that respects reduced motion preferences. Returns an object with:
+
+```typescript
+const { fadeIn, staggeredFadeIn, getDuration, shouldAnimate } = useAnimationProps()
+
+// fadeIn - Standard fade-in/slide-up animation props for Framer Motion
+// staggeredFadeIn(index) - Staggered list animation with delay based on index
+// getDuration(normalDuration) - Returns duration (or 0 if reduced motion)
+// shouldAnimate - Boolean: true if animations are enabled
+```
+
+**Usage**:
+
+```tsx
+;<motion.div {...fadeIn}>Content</motion.div>
+
+{
+  items.map((item, i) => (
+    <motion.div key={i} {...staggeredFadeIn(i)}>
+      {item.content}
+    </motion.div>
+  ))
+}
+```
+
+#### `useHaptic()`
+
+Triggers haptic feedback on supported mobile devices. Respects reduced motion preferences.
+
+```typescript
+const haptic = useHaptic()
+
+// Three intensity levels
+haptic('light') // 10ms vibration
+haptic('medium') // 20ms vibration (default)
+haptic('heavy') // 40ms vibration
+```
+
+**Note**: Silently no-ops on devices without vibration support or when reduced motion is preferred.
 
 ---
 
@@ -1440,7 +1580,7 @@ If you can't answer "yes" to at least 4/5, reconsider the change.
 
 **Main branches**:
 
-- `main` (or default branch) - Production-ready code
+- `master` (default branch) - Production-ready code
 - `claude/*` - Feature branches created by AI assistants
 
 **Branch naming convention for AI assistants**:
@@ -1616,6 +1756,7 @@ git checkout -b claude/new-feature-ukVwn
 - Clipboard API (`navigator.clipboard`)
 - Intersection Observer (via Framer Motion)
 - CSS `backdrop-filter` (for glassmorphism)
+- Vibration API (optional, for haptic feedback on mobile - gracefully degrades)
 
 ### Mobile Considerations
 
@@ -1667,15 +1808,16 @@ ifconfig | grep inet
 
 ## Key Files Quick Reference
 
-| File                 | Purpose                      | When to Edit             |
-| -------------------- | ---------------------------- | ------------------------ |
-| `src/App.tsx`        | Main component orchestration | Adding/removing sections |
-| `src/lib/math.ts`    | Mathematical utilities       | Adding calculations      |
-| `src/index.css`      | Global styles                | Adding custom CSS        |
-| `tailwind.config.js` | Tailwind theme               | Adding colors/utilities  |
-| `vite.config.ts`     | Build configuration          | Changing build settings  |
-| `package.json`       | Dependencies and scripts     | Adding packages          |
-| `.prettierrc`        | Code formatting rules        | Changing format style    |
+| File                 | Purpose                            | When to Edit               |
+| -------------------- | ---------------------------------- | -------------------------- |
+| `src/App.tsx`        | Main component orchestration       | Adding/removing sections   |
+| `src/lib/math.ts`    | Mathematical utilities & constants | Adding calculations        |
+| `src/lib/hooks.ts`   | Custom hooks (animation, a11y)     | Adding reusable hook logic |
+| `src/index.css`      | Global styles & custom utilities   | Adding custom CSS classes  |
+| `tailwind.config.js` | Tailwind theme                     | Adding colors/utilities    |
+| `vite.config.ts`     | Build configuration                | Changing build settings    |
+| `package.json`       | Dependencies and scripts (v1.1.0)  | Adding packages            |
+| `.prettierrc`        | Code formatting rules              | Changing format style      |
 
 ---
 
@@ -1696,6 +1838,6 @@ ifconfig | grep inet
 
 ---
 
-**Last Updated**: 2026-01-20
-**Document Version**: 1.0.0
+**Last Updated**: 2026-02-05
+**Document Version**: 1.1.0
 **Maintained By**: AI Assistants & Project Contributors
