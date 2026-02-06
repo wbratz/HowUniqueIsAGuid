@@ -11,12 +11,12 @@ export default function LayersExplainer() {
     {
       icon: <Eye className="h-6 w-6" />,
       title: 'Encounter',
-      text: 'You (or your systems) actually touch both of those IDs at some point—via logs, APIs, DB rows, etc.',
+      text: 'You or your software actually encounter both of those IDs at some point — in records, reports, or data you work with.',
     },
     {
       icon: <AlertCircle className="h-6 w-6" />,
       title: 'Recognize',
-      text: 'Your tooling or your team detects that the two IDs are identical and flags it as a duplicate.',
+      text: 'You or your software notices that two IDs are identical and flags it as a duplicate.',
     },
   ]
   return (
