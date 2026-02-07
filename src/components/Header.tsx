@@ -10,28 +10,17 @@ export default function Header() {
               <span className="text-accent">GUID</span> Uniqueness
             </a>
             <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/70">
-              <a href="#math" className="hover:text-white">
-                Math
-              </a>
               <a href="#compare" className="hover:text-white">
-                Comparisons
+                The Numbers
               </a>
               <a href="#calc" className="hover:text-white">
                 Calculator
               </a>
+              <a href="#witness" className="hover:text-white">
+                Your Odds
+              </a>
               <a href="#generator" className="hover:text-white">
                 Generator
-              </a>
-              <a href="#witness" className="hover:text-white">
-                Witness
-              </a>
-              <a
-                className="inline-flex items-center gap-2 hover:text-white"
-                href="https://www.rfc-editor.org/rfc/rfc4122"
-                target="_blank"
-                rel="noreferrer"
-              >
-                RFC 4122
               </a>
               <a
                 className="inline-flex items-center gap-2 hover:text-white"

@@ -8,11 +8,13 @@ const Row = ({
   lead,
   blurb,
   id,
+  shareText,
 }: {
   title: string
   lead: string
   blurb: string
   id: string
+  shareText: string
 }) => (
   <div id={id} className="rounded-2xl backdrop-blur-card p-6 group">
     <div className="flex items-start justify-between gap-2">
@@ -20,8 +22,8 @@ const Row = ({
       <ShareButton
         section={id}
         title={lead}
-        text={`${title}: ${lead}`}
-        className="opacity-0 group-hover:opacity-100 transition-opacity"
+        text={shareText}
+        className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
       />
     </div>
     <p className="mt-2 text-xl font-semibold">{lead}</p>
@@ -54,12 +56,14 @@ export default function DeepComparisons() {
             title="Stars in the observable universe"
             lead={`${speakableWithName(idsPerStar)} GUIDs per star`}
             blurb="Even if you labeled each of ~10^22 stars with trillions of trillions of unique IDs, you'd barely scratch the surface of total possible GUIDs."
+            shareText={`There are ${speakableWithName(idsPerStar)} possible GUIDs for every star in the observable universe. Even labeling every star with trillions of IDs barely scratches the surface.`}
           />
           <Row
             id="atoms-comparison"
             title="Atoms in the human body"
             lead={`${speakableWithName(idsPerAtomHuman)} GUIDs per atom`}
             blurb="A typical human body has ~7×10^27 atoms, leaving hundreds of millions of v4 GUIDs for every atom."
+            shareText={`Your body has about 7 octillion atoms — and there are still ${speakableWithName(idsPerAtomHuman)} possible GUIDs for every single one of them.`}
           />
         </div>
       </div>

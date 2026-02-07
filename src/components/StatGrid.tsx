@@ -109,7 +109,7 @@ function StatCard({
           section={id}
           title={`${format(num)} ${title}`}
           text={shareText}
-          className="opacity-0 group-hover:opacity-100 transition-opacity"
+          className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
         />
       </div>
       <motion.p className="text-2xl font-semibold mt-2">{display}</motion.p>
