@@ -25,7 +25,7 @@ export function ogImageSvg(term: Term): string {
   <text x="600" y="330" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="34" font-weight="600" fill="#a78bfa">2¹²² ≈ 5.3 undecillion possibilities</text>
   <text x="600" y="378" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="26" fill="#ffffff" fill-opacity="0.6">More than the atoms in 10 billion Earths</text>
   <rect x="360" y="424" width="480" height="52" rx="12" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.08"/>
-  <text x="600" y="458" text-anchor="middle" font-family="'SF Mono', 'Fira Code', ui-monospace, Menlo, monospace" font-size="24" fill="#ffffff" fill-opacity="0.75" letter-spacing="1">${sample}</text>
+  <text x="600" y="458" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="24" fill="#ffffff" fill-opacity="0.75" letter-spacing="3">${sample}</text>
   <text x="600" y="516" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#ffffff" fill-opacity="0.4" letter-spacing="2">${domain}</text>
 </svg>
 `

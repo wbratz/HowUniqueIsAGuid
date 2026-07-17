@@ -62,6 +62,6 @@ export function buildTerm(variant: Variant): Term {
     variant,
     ...d,
     siteTitle: `How Unique is a ${d.name}?`,
-    ogImage: `/og-image-${variant}.svg`,
+    ogImage: `/og-image-${variant}.png`,
   }
 }

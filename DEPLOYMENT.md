@@ -23,10 +23,13 @@ environment variable. Every future feature is written once and both sites get it
   gets **correct static `<title>` and Open Graph tags**. (This is why it's a
   build-time swap, not a runtime `location.hostname` check — social-media
   scrapers don't run JS, so the OG title/image must be baked into the HTML.)
-- `src/lib/og-image.ts` — the Open Graph share image, generated from the term
-  and emitted to `dist/og-image-<VARIANT>.svg` at build time (and served in dev
-  via a middleware). Like the title, the share image derives from the term, so
-  the two sites can't drift.
+- `src/lib/og-image.ts` — the Open Graph share image (an SVG) generated from the
+  term. `vite.config.ts` rasterizes it to `dist/og-image-<VARIANT>.png` via
+  `@resvg/resvg-js` at build time (and serves it in dev via a middleware). PNG,
+  not SVG, because Facebook/LinkedIn scrapers don't reliably render SVG og:image.
+  Like the title, the share image derives from the term, so the two sites can't
+  drift. `build-assets/fonts/Inter.ttf` is bundled so rasterization is
+  deterministic on any build host (Cloudflare's image may not ship fonts).
 
 ## Local testing
 
