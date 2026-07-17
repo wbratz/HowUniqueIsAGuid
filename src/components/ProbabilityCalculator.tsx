@@ -2,16 +2,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Decimal from 'decimal.js-light'
 import { useState, useMemo } from 'react'
 import { collisionProbability, SPACE_122 } from '../lib/math'
+import { TERM } from '../lib/term'
 import { usePrefersReducedMotion } from '../lib/hooks'
 
 export default function ProbabilityCalculator() {
   const prefersReducedMotion = usePrefersReducedMotion()
   const examples = [
-    { label: '1 million GUIDs', n: '1e6' },
-    { label: '1 billion GUIDs', n: '1e9' },
-    { label: '1 trillion GUIDs', n: '1e12' },
-    { label: '1 quadrillion GUIDs', n: '1e15' },
-    { label: '1 quintillion GUIDs', n: '1e18' },
+    { label: `1 million ${TERM.names}`, n: '1e6' },
+    { label: `1 billion ${TERM.names}`, n: '1e9' },
+    { label: `1 trillion ${TERM.names}`, n: '1e12' },
+    { label: `1 quadrillion ${TERM.names}`, n: '1e15' },
+    { label: `1 quintillion ${TERM.names}`, n: '1e18' },
   ]
 
   const [nStr, setNStr] = useState<string>('')
@@ -25,7 +26,7 @@ export default function ProbabilityCalculator() {
       if (!Number.isFinite(N.toNumber()) || N.isNegative()) return { text: 'Invalid', interp: '' }
       const p = collisionProbability(N, SPACE_122).mul(100)
       const text = p.lessThan(0.000001) ? p.toExponential(2) + '%' : p.toFixed(6) + '%'
-      const interp = `If you create ${N.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} GUIDs, the chance any two are the same is ${text}.`
+      const interp = `If you create ${N.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} ${TERM.names}, the chance any two are the same is ${text}.`
       return { text, interp }
     } catch {
       return { text: 'Invalid', interp: '' }
@@ -48,7 +49,7 @@ export default function ProbabilityCalculator() {
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 backdrop-blur-card rounded-2xl p-6">
             <label htmlFor="n" className="text-sm text-white/70">
-              How many GUIDs do you generate (n)?
+              How many {TERM.names} do you generate (n)?
             </label>
             <input
               id="n"
@@ -96,8 +97,8 @@ export default function ProbabilityCalculator() {
               </AnimatePresence>
             </div>
             <p className="mt-4 text-xs text-white/60">
-              Like the "same birthday in a room" problem — the more GUIDs, the higher the chance any
-              two match.
+              Like the "same birthday in a room" problem — the more {TERM.names}, the higher the
+              chance any two match.
             </p>
             <AnimatePresence mode="wait">
               {result.interp && (

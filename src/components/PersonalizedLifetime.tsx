@@ -3,6 +3,7 @@ import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
 import { User, Clock, Percent } from 'lucide-react'
 import Decimal from 'decimal.js-light'
 import { SPACE_122, formatBig } from '../lib/math'
+import { TERM } from '../lib/term'
 import { usePrefersReducedMotion } from '../lib/hooks'
 import { useEffect } from 'react'
 
@@ -63,7 +64,7 @@ export default function PersonalizedLifetime() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-bold text-center"
         >
-          Your lifetime in GUIDs
+          Your lifetime in {TERM.names}
         </motion.h2>
 
         <motion.p
@@ -73,8 +74,8 @@ export default function PersonalizedLifetime() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-4 text-center text-white/70 max-w-2xl mx-auto"
         >
-          If you generated 1 GUID every second since birth, how much of the GUID space would you
-          have used?
+          If you generated 1 {TERM.name} every second since birth, how much of the {TERM.name} space
+          would you have used?
         </motion.p>
 
         <motion.div
@@ -122,7 +123,7 @@ export default function PersonalizedLifetime() {
               <div className="flex items-start gap-3 p-4 rounded-xl bg-white/5">
                 <span className="text-accent text-lg font-mono mt-0.5">#</span>
                 <div>
-                  <p className="text-white/60 text-sm">GUIDs you would have generated</p>
+                  <p className="text-white/60 text-sm">{TERM.names} you would have generated</p>
                   <motion.p className="text-xl font-semibold">{displayGuids}</motion.p>
                 </div>
               </div>
@@ -130,7 +131,7 @@ export default function PersonalizedLifetime() {
               <div className="flex items-start gap-3 p-4 rounded-xl bg-accent/20 border border-accent/30">
                 <Percent className="h-5 w-5 text-accent mt-0.5" />
                 <div>
-                  <p className="text-white/60 text-sm">Percentage of GUID space used</p>
+                  <p className="text-white/60 text-sm">Percentage of {TERM.name} space used</p>
                   <p className="text-2xl font-bold text-accent">{result.formattedPercent}%</p>
                   <p className="mt-1 text-sm text-white/50">
                     That's a decimal point followed by{' '}
@@ -142,7 +143,7 @@ export default function PersonalizedLifetime() {
 
               <p className="text-center text-white/50 text-sm pt-2">
                 Even after {result.age} years of non-stop generation, you'd have barely scratched
-                the surface of all possible GUIDs.
+                the surface of all possible {TERM.names}.
               </p>
             </motion.div>
           )}

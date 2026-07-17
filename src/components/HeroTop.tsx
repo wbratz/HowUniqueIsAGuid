@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { TERM } from '../lib/term'
 import BitGrid from './BitGrid'
 
 export default function HeroTop() {
@@ -12,7 +13,7 @@ export default function HeroTop() {
           className="text-center"
         >
           <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight">
-            How <span className="text-accent">unique</span> is a GUID?
+            How <span className="text-accent">unique</span> is a {TERM.name}?
           </h1>
           <BitGrid />
         </motion.div>

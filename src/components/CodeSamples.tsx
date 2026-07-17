@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Copy, Check } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { TERM } from '../lib/term'
 
 const samples = {
   javascript: {
@@ -62,7 +63,7 @@ export default function CodeSamples() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-bold text-center"
         >
-          Generate GUIDs in your code
+          Generate {TERM.names} in your code
         </motion.h2>
 
         <div className="mt-8">

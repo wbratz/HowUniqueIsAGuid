@@ -1,4 +1,5 @@
 import { Github } from 'lucide-react'
+import { TERM } from '../lib/term'
 
 export default function Header() {
   return (
@@ -7,7 +8,7 @@ export default function Header() {
         <div className="mt-4 rounded-2xl backdrop-blur-card">
           <div className="flex flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
             <a href="#" className="text-white/90 hover:text-white font-semibold tracking-tight">
-              <span className="text-accent">GUID</span> Uniqueness
+              <span className="text-accent">{TERM.name}</span> Uniqueness
             </a>
             <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-white/70">
               <a href="#math" className="hover:text-white">

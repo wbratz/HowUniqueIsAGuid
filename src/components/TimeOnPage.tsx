@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
 import { Clock, Zap } from 'lucide-react'
 import { usePrefersReducedMotion } from '../lib/hooks'
+import { TERM } from '../lib/term'
 
 // Estimated global GUID generation rate: ~50,000 per second
 // This is a conservative estimate based on enterprise usage patterns
@@ -65,13 +66,13 @@ export default function TimeOnPage() {
                 {displayGuids}
               </motion.span>
             </div>
-            <p className="mt-2 text-white/60">GUIDs have been generated worldwide*</p>
+            <p className="mt-2 text-white/60">{TERM.names} have been generated worldwide*</p>
           </div>
 
           <p className="text-sm text-white/50 max-w-lg mx-auto">
-            And not a single duplicate. At ~50,000 GUIDs per second globally, it would take{' '}
+            And not a single duplicate. At ~50,000 {TERM.names} per second globally, it would take{' '}
             <span className="text-white/70">168 billion years</span> to use just 1% of all possible
-            GUIDs.
+            {TERM.names}.
           </p>
 
           <p className="mt-4 text-xs text-white/30">

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { SPACE_128, SPACE_122, speakable, zerosLine } from '../lib/math'
+import { TERM } from '../lib/term'
 
 export default function HeroDetails() {
   return (
@@ -13,7 +14,7 @@ export default function HeroDetails() {
           className="text-center"
         >
           <p className="text-white/70 max-w-2xl mx-auto">
-            GUIDs (also called UUIDs) are 128‑bit identifiers — think of{' '}
+            {TERM.names} (also called {TERM.alsoCalledPlural}) are 128‑bit identifiers — think of{' '}
             <span className="font-semibold">128 on/off switches</span>. In version 4 (the random
             kind), <span className="font-semibold">6 of those switches are reserved</span> to label
             the version and rules, so{' '}
@@ -23,13 +24,13 @@ export default function HeroDetails() {
 
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="backdrop-blur-card rounded-2xl p-6">
-              <h3 className="text-lg font-semibold mb-2">Total possible GUIDs</h3>
+              <h3 className="text-lg font-semibold mb-2">Total possible {TERM.names}</h3>
               <p className="text-2xl font-bold">{speakable(SPACE_128)}</p>
               <p className="mt-2 text-white/70 text-sm">Math form: 2^128 ≈ 3.40 × 10^38</p>
               <p className="mt-1 text-white/60 text-xs">{zerosLine(SPACE_128)}</p>
             </div>
             <div className="backdrop-blur-card rounded-2xl p-6 shadow-glow">
-              <h3 className="text-lg font-semibold mb-2">Usable GUIDs (version 4)</h3>
+              <h3 className="text-lg font-semibold mb-2">Usable {TERM.names} (version 4)</h3>
               <p className="text-2xl font-bold">{speakable(SPACE_122)}</p>
               <p className="mt-2 text-white/70 text-sm">Math form: 2^122 ≈ 5.32 × 10^36</p>
               <p className="mt-1 text-white/60 text-xs">{zerosLine(SPACE_122)}</p>
@@ -39,7 +40,7 @@ export default function HeroDetails() {
           <div className="mt-10 backdrop-blur-card rounded-2xl p-6">
             <p className="text-sm text-white/70">
               Chance that <span className="font-semibold">any two</span> match after generating{' '}
-              <em>n</em> GUIDs:
+              <em>n</em> {TERM.names}:
             </p>
             <p className="text-xl md:text-2xl font-mono mt-3">
               p(n) ≈ 1 − exp( − n·(n−1) / ( 2 · 2^122 ) )

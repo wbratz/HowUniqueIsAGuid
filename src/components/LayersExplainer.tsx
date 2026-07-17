@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion'
 import { AlertCircle, Eye, Cog } from 'lucide-react'
+import { TERM } from '../lib/term'
 
 export default function LayersExplainer() {
   const cards = [
     {
       icon: <Cog className="h-6 w-6" />,
       title: 'Generate',
-      text: 'Somewhere in the world, two systems happen to create the same GUID. This is where a duplicate is born.',
+      text: `Somewhere in the world, two systems happen to create the same ${TERM.name}. This is where a duplicate is born.`,
     },
     {
       icon: <Eye className="h-6 w-6" />,

@@ -12,6 +12,7 @@ import {
   humanCount,
   oddsAnalogy,
 } from '../lib/math'
+import { TERM } from '../lib/term'
 import { useAnimationProps } from '../lib/hooks'
 
 type PersonaKey = 'hobbyist' | 'startup' | 'bigtech' | 'custom'
@@ -179,8 +180,8 @@ export default function WitnessCalculator() {
           {...staggeredFadeIn(1)}
           className="mx-auto mt-4 max-w-2xl text-center text-white/70"
         >
-          Even if a duplicate GUID were born somewhere in the world, three things would have to go
-          wrong for <span className="font-semibold text-white/90">you</span> to ever notice.
+          Even if a duplicate {TERM.name} were born somewhere in the world, three things would have
+          to go wrong for <span className="font-semibold text-white/90">you</span> to ever notice.
         </motion.p>
 
         {/* Persona picker */}
@@ -221,7 +222,9 @@ export default function WitnessCalculator() {
             >
               <div className="mt-4 grid grid-cols-1 gap-4 rounded-xl backdrop-blur-card p-5 md:grid-cols-2">
                 <div>
-                  <label className="text-sm text-white/70">GUIDs created worldwide per day</label>
+                  <label className="text-sm text-white/70">
+                    {TERM.names} created worldwide per day
+                  </label>
                   <input
                     value={customGlobal}
                     onChange={(e) => setCustomGlobal(e.target.value)}
@@ -231,7 +234,7 @@ export default function WitnessCalculator() {
                 </div>
                 <div>
                   <label className="text-sm text-white/70">
-                    GUIDs your organization creates per day
+                    {TERM.names} your organization creates per day
                   </label>
                   <input
                     value={customOrg}
@@ -241,7 +244,7 @@ export default function WitnessCalculator() {
                   />
                 </div>
                 <Slider
-                  label="What share of your org's GUIDs do you personally see?"
+                  label={`What share of your org's ${TERM.names} do you personally see?`}
                   value={customVisibility}
                   onChange={setCustomVisibility}
                   suffix="The fraction of IDs that cross your desk or your screen."
@@ -293,14 +296,14 @@ export default function WitnessCalculator() {
                     <span className="font-semibold text-white/90">
                       {humanCount(result.nGlobal)}
                     </span>{' '}
-                    GUIDs. Out of all possible pairs, what are the odds any two match?
+                    {TERM.names}. Out of all possible pairs, what are the odds any two match?
                   </p>
                   <div className="mt-4 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-3">
                     <span className="text-2xl font-extrabold text-white">
                       {humanOdds(result.pAnyGlobal)}
                     </span>
                     <span className="text-sm text-white/50">
-                      chance any two GUIDs on Earth are identical
+                      chance any two {TERM.names} on Earth are identical
                     </span>
                   </div>
                   {result.pAnyGlobal.greaterThan(0) && (
@@ -329,7 +332,7 @@ export default function WitnessCalculator() {
                 <div className="min-w-0">
                   <h3 className="text-lg font-semibold">Would you ever encounter both?</h3>
                   <p className="mt-1 text-sm text-white/60">
-                    Of the {humanCount(result.nGlobal)} GUIDs created worldwide, you&apos;d
+                    Of the {humanCount(result.nGlobal)} {TERM.names} created worldwide, you&apos;d
                     personally see about{' '}
                     <span className="font-semibold text-white/90">
                       {humanCount(result.nYouSee)}
@@ -343,8 +346,8 @@ export default function WitnessCalculator() {
                             .toFixed(result.exposure.mul(100).toNumber() < 1 ? 2 : 0)}
                       %
                     </span>{' '}
-                    of all GUIDs. For both halves of a duplicate to land on <em>your</em> desk, that
-                    tiny fraction gets squared — making it dramatically less likely.
+                    of all {TERM.names}. For both halves of a duplicate to land on <em>your</em>{' '}
+                    desk, that tiny fraction gets squared — making it dramatically less likely.
                   </p>
                 </div>
               </div>
@@ -429,7 +432,7 @@ export default function WitnessCalculator() {
                     </p>
                     <ul className="space-y-1.5">
                       <li>
-                        Worldwide GUID creation:{' '}
+                        Worldwide {TERM.name} creation:{' '}
                         <span className="text-white/80">
                           {humanCount(parseFlexibleNumber(persona.globalPerDay))} per day
                         </span>
@@ -445,7 +448,7 @@ export default function WitnessCalculator() {
                         <span className="text-white/80">
                           {(persona.visibility * 100).toFixed(0)}%
                         </span>{' '}
-                        of your org&apos;s GUIDs
+                        of your org&apos;s {TERM.names}
                       </li>
                       <li>
                         Chance you&apos;d spot a duplicate:{' '}

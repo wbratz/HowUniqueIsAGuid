@@ -2,6 +2,7 @@ import { motion, useInView, useMotionValue, useTransform, animate } from 'framer
 import Decimal from 'decimal.js-light'
 import { useEffect, useRef, ReactNode } from 'react'
 import { SPACE_122, estimates, yearsToExhaust, prettyInt, speakableWithName } from '../lib/math'
+import { TERM } from '../lib/term'
 import ShareButton from './ShareButton'
 
 type Item = {
@@ -25,40 +26,40 @@ const items: Item[] = (() => {
       id: 'guids-per-sand-grain',
       title: 'Per grain of sand',
       num: perGrain.toNumber(),
-      format: (n) => `${speakableWithName(new Decimal(n))} GUIDs`,
+      format: (n) => `${speakableWithName(new Decimal(n))} ${TERM.names}`,
       foot: (
         <>
           …for every grain of sand on Earth<sup>1</sup>
         </>
       ),
       detail: `~${prettyInt(perGrain)} per grain`,
-      shareText: `There are ${speakableWithName(perGrain)} possible GUIDs for every grain of sand on Earth.`,
+      shareText: `There are ${speakableWithName(perGrain)} possible ${TERM.names} for every grain of sand on Earth.`,
     },
     {
       id: 'guids-per-person',
       title: 'Per person alive',
       num: perPerson.toNumber(),
-      format: (n) => `${speakableWithName(new Decimal(n))} GUIDs`,
+      format: (n) => `${speakableWithName(new Decimal(n))} ${TERM.names}`,
       foot: (
         <>
           …for each of the ~8 billion people<sup>2</sup>
         </>
       ),
       detail: `${prettyInt(perPerson)} each`,
-      shareText: `There are ${speakableWithName(perPerson)} possible GUIDs for each person alive on Earth.`,
+      shareText: `There are ${speakableWithName(perPerson)} possible ${TERM.names} for each person alive on Earth.`,
     },
     {
       id: 'time-to-exhaust',
       title: 'Time to "run out"',
       num: yearsAt1Bps.toNumber(),
       format: (n) => `${speakableWithName(new Decimal(n))} years`,
-      foot: '…if you minted 1 billion GUIDs per second',
+      foot: `…if you minted 1 billion ${TERM.names} per second`,
       detail: (
         <>
           That's astronomically longer than the age of the universe<sup>3</sup>
         </>
       ),
-      shareText: `Generating 1 billion GUIDs per second, it would take ${speakableWithName(yearsAt1Bps)} years to run out. That's astronomically longer than the age of the universe.`,
+      shareText: `Generating 1 billion ${TERM.names} per second, it would take ${speakableWithName(yearsAt1Bps)} years to run out. That's astronomically longer than the age of the universe.`,
     },
     {
       id: 'coin-flip-analogy',
@@ -67,7 +68,7 @@ const items: Item[] = (() => {
       format: (n) => `${Math.round(n)} flips`,
       foot: 'Equivalent to flipping 122 fair coins',
       detail: '…and using the exact head/tail sequence as your ID',
-      shareText: `A GUID has 122 random bits - like flipping 122 coins and using the exact head/tail sequence as your unique ID.`,
+      shareText: `A ${TERM.name} has 122 random bits - like flipping 122 coins and using the exact head/tail sequence as your unique ID.`,
     },
   ]
 })()
@@ -130,7 +131,7 @@ export default function StatGrid() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-bold text-center"
         >
-          So how many unique GUIDs are there?
+          So how many unique {TERM.names} are there?
         </motion.h2>
 
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
