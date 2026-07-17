@@ -15,8 +15,8 @@ export default function Sources() {
     },
     {
       id: 3,
-      label: 'NASA, age of the universe is about 13.8 billion years',
-      url: 'https://science.nasa.gov/astrophysics/focus-areas/how-old-is-the-universe/',
+      label: 'NASA (WMAP), age of the universe is about 13.8 billion years',
+      url: 'https://map.gsfc.nasa.gov/universe/uni_age.html',
     },
   ]
 

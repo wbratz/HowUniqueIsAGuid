@@ -54,7 +54,7 @@ export default function DeepComparisons() {
             id="stars-comparison"
             title="Stars in the observable universe"
             lead={`${speakableWithName(idsPerStar)} ${TERM.names} per star`}
-            blurb={`Even if you labeled each of ~10^22 stars with trillions of trillions of unique IDs, you'd barely scratch the surface of total possible ${TERM.names}.`}
+            blurb={`That's enough to hand every one of the ~10^22 stars in the observable universe its own private stash of hundreds of trillions of ${TERM.names}.`}
           />
           <Row
             id="atoms-comparison"

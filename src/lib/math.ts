@@ -39,7 +39,7 @@ export function yearsToExhaust(ratePerSecond: Num, space: Num = SPACE_122) {
 export const estimates = {
   grainsOfSand: new Decimal('7.5e18'), // ~7.5e18 grains on Earth — University of Hawaii estimate: https://manoa.hawaii.edu/news/article.php?aId=607
   people: new Decimal('8e9'), // ~8 billion people — UN 2022 world population prospects: https://www.un.org/en/desa/world-population-reached-8-billion-2022
-  ageUniverseYears: new Decimal('1.38e10'), // Age of universe ≈13.8 billion years — NASA: https://science.nasa.gov/astrophysics/focus-areas/how-old-is-the-universe/
+  ageUniverseYears: new Decimal('1.38e10'), // Age of universe ≈13.8 billion years — NASA WMAP: https://map.gsfc.nasa.gov/universe/uni_age.html
 }
 
 /** Break d into mantissa×10^exp with 2 sig figs mantissa */
