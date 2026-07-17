@@ -70,9 +70,12 @@ export default function TimeOnPage() {
           </div>
 
           <p className="text-sm text-white/50 max-w-lg mx-auto">
-            And not a single duplicate. At ~50,000 {TERM.names} per second globally, it would take{' '}
-            <span className="text-white/70">168 billion years</span> to use just 1% of all possible
-            {TERM.names}.
+            And not a single duplicate. At ~50,000 {TERM.names} per second globally, using up just
+            1% of all possible {TERM.names} would take{' '}
+            <span className="text-white/70">
+              over 2 trillion times longer than the universe has existed
+            </span>
+            .
           </p>
 
           <p className="mt-4 text-xs text-white/30">
