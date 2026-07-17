@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { TERM } from '../lib/term'
 
 export default function Summary() {
   return (
@@ -17,11 +18,12 @@ export default function Summary() {
         <div className="mt-6 backdrop-blur-card rounded-2xl p-6">
           <ul className="list-disc list-inside space-y-2 text-white/80">
             <li>
-              Version-4 GUIDs have 122 coin-flips worth of randomness — over 5 undecillion
+              Version-4 {TERM.names} have 122 coin-flips worth of randomness — over 5 undecillion
               possibilities.
             </li>
             <li>
-              Even at global scales, the odds of any two GUIDs matching remain astronomically small.
+              Even at global scales, the odds of any two {TERM.names} matching remain astronomically
+              small.
             </li>
             <li>
               Spotting a duplicate yourself is even rarer, factoring in visibility and recognition.
@@ -30,7 +32,7 @@ export default function Summary() {
 
           <p className="mt-4 text-white/70">
             Curious to dig deeper? Tinker with the calculators above, inspect the math, or jump into
-            the source to explore more angles on GUID uniqueness.
+            the source to explore more angles on {TERM.name} uniqueness.
           </p>
         </div>
       </div>

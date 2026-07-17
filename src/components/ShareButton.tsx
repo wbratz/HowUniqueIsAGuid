@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Share2, Check, Link } from 'lucide-react'
+import { TERM } from '../lib/term'
 
 interface ShareButtonProps {
   section: string
@@ -13,8 +14,8 @@ export default function ShareButton({ section, title, text, className = '' }: Sh
   const canShare = typeof navigator !== 'undefined' && 'share' in navigator
 
   const shareUrl = `${window.location.origin}${window.location.pathname}#${section}`
-  const shareTitle = `${title} - How Unique is a GUID?`
-  const shareText = text || `Check out this mind-blowing fact about GUIDs: ${title}`
+  const shareTitle = `${title} - ${TERM.siteTitle}`
+  const shareText = text || `Check out this mind-blowing fact about ${TERM.names}: ${title}`
 
   const handleShare = async () => {
     // Try native share API first (mobile)

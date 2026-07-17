@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:uuid": "VITE_VARIANT=UUID vite",
     "build": "tsc -b && vite build",
+    "build:uuid": "VITE_VARIANT=UUID npm run build",
     "preview": "vite preview",
+    "preview:uuid": "VITE_VARIANT=UUID vite preview",
     "format": "prettier --write ."
   },
   "dependencies": {

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import Decimal from 'decimal.js-light'
 import { SPACE_122, speakableWithName } from '../lib/math'
+import { TERM } from '../lib/term'
 import ShareButton from './ShareButton'
 
 const Row = ({
@@ -52,14 +53,14 @@ export default function DeepComparisons() {
           <Row
             id="stars-comparison"
             title="Stars in the observable universe"
-            lead={`${speakableWithName(idsPerStar)} GUIDs per star`}
-            blurb="Even if you labeled each of ~10^22 stars with trillions of trillions of unique IDs, you'd barely scratch the surface of total possible GUIDs."
+            lead={`${speakableWithName(idsPerStar)} ${TERM.names} per star`}
+            blurb={`Even if you labeled each of ~10^22 stars with trillions of trillions of unique IDs, you'd barely scratch the surface of total possible ${TERM.names}.`}
           />
           <Row
             id="atoms-comparison"
             title="Atoms in the human body"
-            lead={`${speakableWithName(idsPerAtomHuman)} GUIDs per atom`}
-            blurb="A typical human body has ~7×10^27 atoms, leaving hundreds of millions of v4 GUIDs for every atom."
+            lead={`${speakableWithName(idsPerAtomHuman)} ${TERM.names} per atom`}
+            blurb={`A typical human body has ~7×10^27 atoms, leaving hundreds of millions of v4 ${TERM.names} for every atom.`}
           />
         </div>
       </div>

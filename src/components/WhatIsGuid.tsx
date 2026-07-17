@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Fingerprint, Copy, Check } from 'lucide-react'
+import { TERM } from '../lib/term'
 
 function generateExampleGuid(): string {
   const hex = '0123456789abcdef'
@@ -46,13 +47,13 @@ export default function WhatIsGuid() {
           </div>
 
           <h2 className="text-2xl md:text-3xl font-bold">
-            A GUID is like a <span className="text-accent">digital fingerprint</span>
+            A {TERM.name} is like a <span className="text-accent">digital fingerprint</span>
           </h2>
 
           <p className="mt-4 text-white/70 text-lg">
             Every time you buy something online, stream a video, or save a game — a unique ID is
-            created to track that exact moment. GUIDs (Globally Unique Identifiers) are 32-character
-            codes designed so that{' '}
+            created to track that exact moment. {TERM.names} ({TERM.expansionPlural}) are
+            32-character codes designed so that{' '}
             <span className="font-semibold text-white/90">no two should ever match</span>, anywhere
             in the world, ever.
           </p>
@@ -89,8 +90,8 @@ export default function WhatIsGuid() {
           </p>
 
           <p className="mt-4 text-xs text-white/40">
-            Technical note: GUIDs use 128 bits of data — like 128 on/off switches. In version 4 (the
-            random kind), 122 of those are truly random, equivalent to 122 coin flips.
+            Technical note: {TERM.names} use 128 bits of data — like 128 on/off switches. In version
+            4 (the random kind), 122 of those are truly random, equivalent to 122 coin flips.
           </p>
         </motion.div>
       </div>

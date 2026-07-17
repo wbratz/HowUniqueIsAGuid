@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
 import { ShoppingCart, Gamepad2, FileText, CreditCard, Database } from 'lucide-react'
+import { TERM } from '../lib/term'
 
 const examples = [
   {
     icon: <ShoppingCart className="h-6 w-6" />,
     title: 'Online orders',
-    description: 'Your order confirmation number is often a GUID or similar unique ID',
+    description: `Your order confirmation number is often a ${TERM.name} or similar unique ID`,
     example: 'ORD-a4f2c8e1-9b7d-4e3f...',
   },
   {
@@ -29,7 +30,7 @@ const examples = [
   {
     icon: <Database className="h-6 w-6" />,
     title: 'Behind the scenes',
-    description: 'Databases use GUIDs to track users, sessions, and records',
+    description: `Databases use ${TERM.names} to track users, sessions, and records`,
     example: 'user_d4e5f6a7-b8c9-0123...',
   },
 ]
@@ -45,7 +46,7 @@ export default function RealWorldExamples() {
           transition={{ duration: 0.6 }}
           className="text-2xl md:text-3xl font-bold text-center"
         >
-          You've already seen GUIDs everywhere
+          You've already seen {TERM.names} everywhere
         </motion.h2>
 
         <motion.p

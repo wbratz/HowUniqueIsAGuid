@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import Decimal from 'decimal.js-light'
 import { SPACE_122, speakableWithName, estimates } from '../lib/math'
+import { TERM } from '../lib/term'
 import ShareButton from './ShareButton'
 
 const ODDS_POWERBALL = new Decimal('292201338')
@@ -34,19 +35,17 @@ export default function RelatableScenarios() {
       id: 'lottery-streak',
       title: 'Lottery streak',
       lead: `Win Powerball about ${kPowerball.toFixed(2)} times in a row`,
-      blurb:
-        'Two fresh random v4 GUIDs matching is roughly as unlikely as hitting the Powerball jackpot ~4–5 times in a row.',
+      blurb: `Two fresh random v4 ${TERM.names} matching is roughly as unlikely as hitting the Powerball jackpot ~4–5 times in a row.`,
       foot: 'Powerball odds are 1 in 292,201,338 per drawing; assumes independence.',
     },
     {
       id: 'sand-twice',
       title: 'Sand, twice in a row',
       lead: "Pick the exact same grain twice from all Earth's beaches",
-      blurb:
-        'Doing it twice — mixing the sand between picks — is a bit less likely than two random GUIDs matching.',
+      blurb: `Doing it twice — mixing the sand between picks — is a bit less likely than two random ${TERM.names} matching.`,
       foot: (
         <>
-          Odds: ~1 in {sandOdds} vs ~1 in {guidOdds} for two GUIDs matching.<sup>1</sup>
+          Odds: ~1 in {sandOdds} vs ~1 in {guidOdds} for two {TERM.names} matching.<sup>1</sup>
         </>
       ),
     },
@@ -54,16 +53,14 @@ export default function RelatableScenarios() {
       id: 'gamer-dice',
       title: 'Gamer dice',
       lead: `Match a specific ${kD20}-roll D20 sequence`,
-      blurb:
-        'Write down 28 exact D20 results (like 7, 13, 20, …). Rolling that exact sequence is on the same scale as a two GUIDs matching.',
+      blurb: `Write down 28 exact D20 results (like 7, 13, 20, …). Rolling that exact sequence is on the same scale as a two ${TERM.names} matching.`,
       foot: 'Uses base^k ≈ 2^122 with base = 20.',
     },
     {
       id: 'random-code',
       title: 'Typing a random code',
       lead: `Match a random ${chars36}-character code`,
-      blurb:
-        'With upper‑case letters and digits only (A–Z, 0–9), ~24 random characters is comparable to a two GUIDs matching.',
+      blurb: `With upper‑case letters and digits only (A–Z, 0–9), ~24 random characters is comparable to a two ${TERM.names} matching.`,
       foot: '36^24 is slightly larger than 2^122; 23 would be slightly smaller.',
     },
   ]
@@ -78,13 +75,13 @@ export default function RelatableScenarios() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-bold text-center"
         >
-          What are the odds two GUIDs would ever match?
+          What are the odds two {TERM.names} would ever match?
         </motion.h2>
 
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cards.map((c, i) => {
             // Create contextual share text that makes sense standalone
-            const shareText = `How likely are two random GUIDs to match? ${c.lead.charAt(0).toUpperCase() + c.lead.slice(1)}.`
+            const shareText = `How likely are two random ${TERM.names} to match? ${c.lead.charAt(0).toUpperCase() + c.lead.slice(1)}.`
 
             return (
               <motion.div

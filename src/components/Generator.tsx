@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Copy, Sparkles } from 'lucide-react'
 import confetti from 'canvas-confetti'
+import { TERM } from '../lib/term'
 
 const celebrate = (intensity: 'light' | 'medium' | 'heavy' = 'medium') => {
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -86,7 +87,7 @@ export default function Generator() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-4xl font-bold text-center"
         >
-          Try it: generate some GUIDs
+          Try it: generate some {TERM.names}
         </motion.h2>
 
         <div className="mt-8 backdrop-blur-card rounded-2xl p-6">
@@ -131,11 +132,11 @@ export default function Generator() {
         </div>
 
         <p className="mt-6 text-center text-white/60 text-sm">
-          These are random version‑4 GUIDs generated with the browser’s cryptographically secure
-          RNG.
+          These are random version‑4 {TERM.names} generated with the browser’s cryptographically
+          secure RNG.
         </p>
         <p className="mt-2 text-center text-white/60 text-sm">
-          Want to use GUIDs in your own code? See the{' '}
+          Want to use {TERM.names} in your own code? See the{' '}
           <a href="#code-samples" className="text-accent underline">
             code samples
           </a>
