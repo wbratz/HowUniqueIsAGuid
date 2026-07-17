@@ -23,7 +23,10 @@ environment variable. Every future feature is written once and both sites get it
   gets **correct static `<title>` and Open Graph tags**. (This is why it's a
   build-time swap, not a runtime `location.hostname` check — social-media
   scrapers don't run JS, so the OG title/image must be baked into the HTML.)
-- `public/og-image-GUID.svg` / `public/og-image-UUID.svg` — per-variant share images.
+- `src/lib/og-image.ts` — the Open Graph share image, generated from the term
+  and emitted to `dist/og-image-<VARIANT>.svg` at build time (and served in dev
+  via a middleware). Like the title, the share image derives from the term, so
+  the two sites can't drift.
 
 ## Local testing
 
